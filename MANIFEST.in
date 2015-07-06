@@ -1,0 +1,2 @@
+include findagg/requirements.json
+include README.rst
