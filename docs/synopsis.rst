@@ -29,6 +29,9 @@ Features
 **Display missing data on the filesystem**
   When an aggregation test fails, you can choosse to walk through ``/prodigfs/esg/CMIP5/merge``. This returns the list of missing data in the CMIP5 tree. This information can be easily used to build `a SYNDA template <https://raw.githubusercontent.com/Prodiguer/synda/master/sdt/doc/TEMPLATE>`_ making a downloading request at IPSL.
 
+**Save the results of your research**
+  To proceed on found aggregations, you can save the list of available aggregation. It is possible to specify the path of the output files or not. ``-o`` option stand for the aggregation list and ``-m`` option is for the list of missing data on the filesystem (see :ref:`usage`). Both options are optionnal and can be used independently of one another.
+
 **Useful template**
   Your request can be easily formatted using the ``requierments.json`` template. You just need to know the `CMIP5 vocabulary <http://cmip-pcmdi.llnl.gov/cmip5/data_description.html>`_ to build your request in a researcher-friendly way (see :ref:`configuration`).
 

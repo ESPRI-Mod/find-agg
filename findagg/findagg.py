@@ -73,37 +73,37 @@ class _ProcessingContext(object):
     """
     Encapsulates the following processing context/information for main process:
 
-    +--------------------+---------------+---------------------------------------+
-    | Attribute          | Type          | Description                           |
-    +====================+===============+=======================================+
-    | *self*.ensembles   | *list*        | Ensembles from request                |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.experiments | *list*        | Experiments from request              |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.institute   | *str*         | Institute in process                  |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.institutes  | *list*        | institutes from a directory           |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.model       | *str*         | Model in process                      |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.outputfile  | *str*         | Output list of available aggregations |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.pool        | *pool object* | Pool of workers (from multithreading) |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.urls        | *list*        | URLs list to call                     |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.variables   | *list*        | Variables from request                |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.verbose     | *boolean*     | True if verbose mode                  |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.miss        | *boolean*     | True if output missing data           |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.xml         | *boolean*     | True to scan XML aggregations         |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.tds         | *boolean*     | True to scan THREDDS aggregations     |
-    +--------------------+---------------+---------------------------------------+
-    | *self*.inter       | *boolean*     | True to scan both aggregations types  |
-    +--------------------+---------------+---------------------------------------+
+    +--------------------+---------------+----------------------------------------+
+    | Attribute          | Type          | Description                            |
+    +====================+===============+========================================+
+    | *self*.ensembles   | *list*        | Ensembles from request                 |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.experiments | *list*        | Experiments from request               |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.institute   | *str*         | Institute in process                   |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.institutes  | *list*        | institutes from a directory            |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.model       | *str*         | Model in process                       |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.outputfile  | *str*         | Output file for available aggregations |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.pool        | *pool object* | Pool of workers (from multithreading)  |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.urls        | *list*        | URLs list to call                      |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.variables   | *list*        | Variables from request                 |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.verbose     | *boolean*     | True if verbose mode                   |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.miss        | *boolean*     | True if output missing data            |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.xml         | *boolean*     | True to scan XML aggregations          |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.tds         | *boolean*     | True to scan THREDDS aggregations      |
+    +--------------------+---------------+----------------------------------------+
+    | *self*.inter       | *boolean*     | True to scan both aggregations types   |
+    +--------------------+---------------+----------------------------------------+
 
     :param dict args: Parsed command-line arguments
     :returns: The processing context
@@ -403,7 +403,7 @@ def _all_xmls_exist(ctx):
 
 def _write_urls(ctx):
     """
-    Writes all available aggregation into output file.
+    Writes all available aggregations into output file.
 
     :param dict ctx: The processing context
 

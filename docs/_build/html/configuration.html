@@ -53,47 +53,41 @@
           <div class="body">
             
   <div class="section" id="configuration">
-<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<p>The only conguration you have to do is to build your request. <tt class="docutils literal"><span class="pre">find_agg</span></tt> works with a JSON header file enclosing your requirements. Please use the command-line help to find the embedded template (see <a class="reference internal" href="usage.html#usage"><em>Usage</em></a>):</p>
-<div class="highlight-bash"><div class="highlight"><pre>find_agg -h
-</pre></div>
-</div>
+<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>The only conguration you have to do is to build your request. <tt class="docutils literal"><span class="pre">find_agg</span></tt> works with a JSON header file enclosing your requirements. Please use the command-line help to find the embedded template (see <a class="reference internal" href="usage.html#usage"><em>Usage</em></a>).</p>
 <p><tt class="docutils literal"><span class="pre">find_agg</span></tt> uses a combinatory of HTTP requests or XML paths to check if an aggregation exists. The aggregation URLs/paths are rebuilt following <strong>ALL</strong> requirements from your JSON file in a sense of <strong>AND</strong> conditions/logical operators with one element of each facets. Consequently, all fields in the JSON header file are required.</p>
 <div class="section" id="build-your-request">
 <h2>Build your request<a class="headerlink" href="#build-your-request" title="Permalink to this headline">¶</a></h2>
 <p>Edit your <tt class="docutils literal"><span class="pre">requirements.json</span></tt> file defining your requested experiments, ensembles and variables according to the <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/data_description.html">CMIP5 vocabulary</a> and keeping the correct JSON syntax (see template below):</p>
-<div class="highlight-javascript"><div class="highlight"><pre>  {
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
 
-     &quot;_help&quot; : &quot;Set below your required variables, experiments and ensembles following the CMIP5 vocabulary. Be sure to keep the correct JSON syntax (brackets, braces, comma) following this template. This comment line is ignored by Python script and can be deleted if desired&quot;,
+   <span class="s2">&quot;_help&quot;</span> <span class="o">:</span> <span class="s2">&quot;Set below your required variables, experiments and ensembles following the CMIP5 vocabulary. Be sure to keep the correct JSON syntax (brackets, braces, comma) following this template. This comment line is ignored by Python script and can be deleted if desired&quot;</span><span class="p">,</span>
 
-     &quot;variables&quot;:
-        {
-        &quot;pr&quot;:  [&quot;mon&quot;, &quot;atmos&quot;, &quot;Amon&quot;],
-        &quot;tas&quot;: [&quot;mon&quot;, &quot;atmos&quot;, &quot;Amon&quot;]
-        },
-     &quot;experiments&quot;: [&quot;piControl&quot;, &quot;1pctCO2&quot;, &quot;rcp26&quot;, &quot;rcp45&quot;, &quot;rcp85&quot;],
-     &quot;ensembles&quot;:   [&quot;r1i1p1&quot;, &quot;r2i1p1&quot;]
+   <span class="s2">&quot;variables&quot;</span><span class="o">:</span>
+      <span class="p">{</span>
+      <span class="s2">&quot;pr&quot;</span><span class="o">:</span>  <span class="p">[</span><span class="s2">&quot;mon&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amon&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;tas&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;mon&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amon&quot;</span><span class="p">]</span>
+      <span class="p">},</span>
+   <span class="s2">&quot;experiments&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;piControl&quot;</span><span class="p">,</span> <span class="s2">&quot;1pctCO2&quot;</span><span class="p">,</span> <span class="s2">&quot;rcp26&quot;</span><span class="p">,</span> <span class="s2">&quot;rcp45&quot;</span><span class="p">,</span> <span class="s2">&quot;rcp85&quot;</span><span class="p">],</span>
+   <span class="s2">&quot;ensembles&quot;</span><span class="o">:</span>   <span class="p">[</span><span class="s2">&quot;r1i1p1&quot;</span><span class="p">,</span> <span class="s2">&quot;r2i1p1&quot;</span><span class="p">]</span>
 
-  }
-
-
-* ``_help``: is an omitted section by ``find_agg``. You can use it as commentary describing your request.
-* ``variables``: delare here the requiered variables with their CMIP5 name and corresponding tuple ``[&quot;frequency&quot;, &quot;realm&quot;, &quot;CMOR table&quot;]`` in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:
+<span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-javascript"><div class="highlight"><pre>  &quot;variables&quot;:
-     {
-     &quot;tas&quot;: [&quot;day&quot;, &quot;atmos&quot;, &quot;day&quot;],
-     &quot;tas&quot;: [&quot;mon&quot;, &quot;atmos&quot;, &quot;Amon&quot;]
-     },
-
-* ``experiments``: list here the required experiments coma-separated.
-* ``ensembles``: list here the required ensembles coma-separated.
+<p><tt class="docutils literal"><span class="pre">_help</span></tt>: is an omitted section by <tt class="docutils literal"><span class="pre">find_agg</span></tt>. You can use it as commentary describing your request.</p>
+<p><tt class="docutils literal"><span class="pre">variables</span></tt>: delare here the requiered variables with their CMIP5 name and corresponding tuple <tt class="docutils literal"><span class="pre">[&quot;frequency&quot;,</span> <span class="pre">&quot;realm&quot;,</span> <span class="pre">&quot;CMOR</span> <span class="pre">table&quot;]</span></tt> in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;variables&quot;</span><span class="o">:</span>
+   <span class="p">{</span>
+   <span class="s2">&quot;tas&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">],</span>
+   <span class="s2">&quot;tas&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;mon&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amon&quot;</span><span class="p">]</span>
+   <span class="p">},</span>
 </pre></div>
 </div>
+<p><tt class="docutils literal"><span class="pre">experiments</span></tt>: list here the required experiments coma-separated.
+<tt class="docutils literal"><span class="pre">ensembles</span></tt>: list here the required ensembles coma-separated.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p><tt class="docutils literal"><span class="pre">find_agg`</span></tt> supports Unix wildcards only for ensembles/members. As for example</p>
+<p><tt class="docutils literal"><span class="pre">find_agg</span></tt> supports Unix wildcards only for ensembles/members. As for example</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;ensembles&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;r[12]i1p1&quot;</span><span class="p">]</span>
 </pre></div>
 </div>

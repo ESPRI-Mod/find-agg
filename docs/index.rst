@@ -11,6 +11,7 @@ find_agg
    faq
    credits
    log
+   autodoc
    
 Indices and tables
 ==================

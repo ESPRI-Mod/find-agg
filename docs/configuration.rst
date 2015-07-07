@@ -32,6 +32,7 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
 
 
 ``_help``: is an omitted section by ``find_agg``. You can use it as commentary describing your request.
+
 ``variables``: delare here the requiered variables with their CMIP5 name and corresponding tuple ``["frequency", "realm", "CMOR table"]`` in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:
 
 .. code-block:: javascript
@@ -45,7 +46,7 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
 ``experiments``: list here the required experiments coma-separated.
 ``ensembles``: list here the required ensembles coma-separated.
 
-.. warning:: ``find_agg``` supports Unix wildcards only for ensembles/members. As for example 
+.. warning:: ``find_agg`` supports Unix wildcards only for ensembles/members. As for example 
 
    .. code-block:: javascript
 

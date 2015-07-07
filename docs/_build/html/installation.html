@@ -62,7 +62,7 @@
 </div>
 <div class="section" id="pip-installation-from-github">
 <h2>PIP installation from GitHub<a class="headerlink" href="#pip-installation-from-github" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre>pip install -e git://github.com/Prodiguer/cmip5-find-agg.git@masters#egg<span class="o">=</span>findagg
+<div class="highlight-bash"><div class="highlight"><pre>pip install -e git://github.com/Prodiguer/cmip5-find-agg.git@master#egg<span class="o">=</span>findagg
 </pre></div>
 </div>
 </div>
@@ -101,17 +101,27 @@ git clone git@github.com:Prodiguer/cmip5-find-agg.git
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">find_agg</span></tt> uses the following basic Python libraries includes in Python 2.5+. Becareful your Python environment includes:</dt>
 <dd><ul class="first last simple">
-<li>os, glob, logging</li>
-<li>argparse</li>
-<li>requests</li>
-<li>itertools</li>
-<li>json</li>
-<li>urlparse</li>
-<li>datetime</li>
-<li>multiprocessing</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/os.html">os</a>, <a class="reference external" href="https://docs.python.org/2/library/glob.html">glob</a>, <a class="reference external" href="https://docs.python.org/2/library/logging.html">logging</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/argparse.html">argparse</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/itertools.html">itertools</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/json.html">json</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/urlparse.html">urlparse</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/datetime.html">datetime</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/library/multiprocessing.html">multiprocessing</a></li>
 </ul>
 </dd>
 </dl>
+<p>Please install the <tt class="docutils literal"><span class="pre">requests</span></tt> library not inclued in most Python distributions using the usual PIP command-line:</p>
+<div class="highlight-bash"><div class="highlight"><pre>pip install requests
+</pre></div>
+</div>
+<p>or download and intall the <a class="reference external" href="https://pypi.python.org/pypi/requests">sources from PyPi</a>:</p>
+<div class="highlight-bash"><div class="highlight"><pre>wget https://pypi.python.org/packages/source/r/requests/requests-2.7.0.tar.gz#md5<span class="o">=</span>29b173fd5fa572ec0764d1fd7b527260
+tar -xzvf requests-2.7.0.tar.gz
+<span class="nb">cd </span>requests-2.7.0/
+python setup.py install
+</pre></div>
+</div>
 </div>
 </div>
 

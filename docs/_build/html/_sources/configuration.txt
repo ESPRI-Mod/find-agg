@@ -1,12 +1,10 @@
+.. _configuration:
+
 *************
 Configuration
 *************
 
-The only conguration you have to do is to build your request. ``find_agg`` works with a JSON header file enclosing your requirements. Please use the command-line help to find the embedded template (see :ref:`usage`):
-
-.. code-block:: bash
-
-  find_agg -h
+The only conguration you have to do is to build your request. ``find_agg`` works with a JSON header file enclosing your requirements. Please use the command-line help to find the embedded template (see :ref:`usage`).
 
 ``find_agg`` uses a combinatory of HTTP requests or XML paths to check if an aggregation exists. The aggregation URLs/paths are rebuilt following **ALL** requirements from your JSON file in a sense of **AND** conditions/logical operators with one element of each facets. Consequently, all fields in the JSON header file are required.
 
@@ -33,8 +31,9 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
    }
 
 
- * ``_help``: is an omitted section by ``find_agg``. You can use it as commentary describing your request.
- * ``variables``: delare here the requiered variables with their CMIP5 name and corresponding tuple ``["frequency", "realm", "CMOR table"]`` in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:
+``_help``: is an omitted section by ``find_agg``. You can use it as commentary describing your request.
+
+``variables``: delare here the requiered variables with their CMIP5 name and corresponding tuple ``["frequency", "realm", "CMOR table"]`` in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:
 
 .. code-block:: javascript
 
@@ -44,10 +43,10 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
       "tas": ["mon", "atmos", "Amon"]
       },
 
- * ``experiments``: list here the required experiments coma-separated.
- * ``ensembles``: list here the required ensembles coma-separated.
+``experiments``: list here the required experiments coma-separated.
+``ensembles``: list here the required ensembles coma-separated.
 
-.. warning:: ``find_agg``` supports Unix wildcards only for ensembles/members. As for example 
+.. warning:: ``find_agg`` supports Unix wildcards only for ensembles/members. As for example 
 
    .. code-block:: javascript
 

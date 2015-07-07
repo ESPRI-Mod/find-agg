@@ -122,37 +122,37 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encapsulates the following processing context/information for main process:</span>
 
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | Attribute          | Type          | Description                           |</span>
-<span class="sd">    +====================+===============+=======================================+</span>
-<span class="sd">    | *self*.ensembles   | *list*        | Ensembles from request                |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.experiments | *list*        | Experiments from request              |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.institute   | *str*         | Institute in process                  |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.institutes  | *list*        | institutes from a directory           |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.model       | *str*         | Model in process                      |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.outputfile  | *str*         | Output list of available aggregations |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.pool        | *pool object* | Pool of workers (from multithreading) |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.urls        | *list*        | URLs list to call                     |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.variables   | *list*        | Variables from request                |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.verbose     | *boolean*     | True if verbose mode                  |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.miss        | *boolean*     | True if output missing data           |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.xml         | *boolean*     | True to scan XML aggregations         |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.tds         | *boolean*     | True to scan THREDDS aggregations     |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
-<span class="sd">    | *self*.inter       | *boolean*     | True to scan both aggregations types  |</span>
-<span class="sd">    +--------------------+---------------+---------------------------------------+</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | Attribute          | Type          | Description                            |</span>
+<span class="sd">    +====================+===============+========================================+</span>
+<span class="sd">    | *self*.ensembles   | *list*        | Ensembles from request                 |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.experiments | *list*        | Experiments from request               |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.institute   | *str*         | Institute in process                   |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.institutes  | *list*        | institutes from a directory            |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.model       | *str*         | Model in process                       |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.outputfile  | *str*         | Output file for available aggregations |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.pool        | *pool object* | Pool of workers (from multithreading)  |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.urls        | *list*        | URLs list to call                      |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.variables   | *list*        | Variables from request                 |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.verbose     | *boolean*     | True if verbose mode                   |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.miss        | *boolean*     | True if output missing data            |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.xml         | *boolean*     | True to scan XML aggregations          |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.tds         | *boolean*     | True to scan THREDDS aggregations      |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
+<span class="sd">    | *self*.inter       | *boolean*     | True to scan both aggregations types   |</span>
+<span class="sd">    +--------------------+---------------+----------------------------------------+</span>
 
 <span class="sd">    :param dict args: Parsed command-line arguments</span>
 <span class="sd">    :returns: The processing context</span>
@@ -452,7 +452,7 @@
 </div>
 <div class="viewcode-block" id="_write_urls"><a class="viewcode-back" href="../autodoc.html#findagg._write_urls">[docs]</a><span class="k">def</span> <span class="nf">_write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Writes all available aggregation into output file.</span>
+<span class="sd">    Writes all available aggregations into output file.</span>
 
 <span class="sd">    :param dict ctx: The processing context</span>
 

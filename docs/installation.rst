@@ -14,7 +14,7 @@ PIP installation from GitHub
 
 .. code-block:: bash
 
-  pip install -e git://github.com/Prodiguer/cmip5-find-agg.git@masters#egg=findagg
+  pip install -e git://github.com/Prodiguer/cmip5-find-agg.git@master#egg=findagg
 
 Installation from GitHub
 ++++++++++++++++++++++++
