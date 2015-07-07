@@ -48,6 +48,7 @@ Dependencies
 ++++++++++++
 
 ``find_agg`` uses the following basic Python libraries includes in Python 2.5+. Becareful your Python environment includes:
+
  * `os <https://docs.python.org/2/library/os.html>`_, `glob <https://docs.python.org/2/library/glob.html>`_, `logging <https://docs.python.org/2/library/logging.html>`_
  * `argparse <https://docs.python.org/2/library/argparse.html>`_
  * `itertools <https://docs.python.org/2/library/itertools.html>`_
