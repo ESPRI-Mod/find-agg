@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; find_agg 0.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="find_agg 0.5 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">find_agg 0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>## Usage example</p>
+<ul class="simple">
+<li>Print help/usage.</li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>Shell
+$&gt; ./find_agg.py -h
+usage: find_agg.py [-h] [-o [OUTPUTFILE]] [&#8211;tds] [&#8211;xml] [-m [MISSING]]</p>
+<blockquote>
+<div>[-l [LOGDIR]] [-i] [-v] [-V]
+[inputfile]</div></blockquote>
+<p>Find CMIP5 aggregations according to requirements
+upon local IPSL-ESGF datanode (THREDDS server) or into CICLAD filesystem.</p>
+<dl class="docutils">
+<dt>positional arguments:</dt>
+<dd>inputfile             Path of the JSON template with the requirements of the request.</dd>
+<dt>optional arguments:</dt>
+<dd><table class="first docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Show this help message and exit.</td></tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>-o [OUTPUTFILE], &#8211;outputfile [OUTPUTFILE]</dt>
+<dd>Outputfile with available aggregation list
+(default is &#8216;{workdir}/aggregations.list&#8217;).</dd>
+<dt>-m [MISSING], &#8211;missing [MISSING]</dt>
+<dd>Outputfile with the list of missing data
+(default is &#8216;{workdir}/missing_data.list&#8217;).</dd>
+<dt>-l [LOGDIR], &#8211;logdir [LOGDIR]</dt>
+<dd>Logfile directory (default is working directory).
+If not, standard output is used.</dd>
+</dl>
+<table class="last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-i</span>, <span class="option">--inter</span></kbd></td>
+<td>Intersection between XML and THREDDS aggregations results
+(default is union of results, required &#8211;xml and &#8211;tds).</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td>Shows missing data
+(default only shows available models).</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-V</span>, <span class="option">--version</span></kbd></td>
+<td>Program version</td></tr>
+</tbody>
+</table>
+</dd>
+<dt>Search into (at least one required):</dt>
+<dd><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--tds</span></kbd></td>
+<td>THREDDS agregations.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--xml</span></kbd></td>
+<td>XML agregations from cdscan.</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<p>Developped by Levavasseur, G., and Greenslade, M., (CNRS/IPSL)
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<ul class="simple">
+<li>Run the script to find THREDDS aggregations:</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">`Shell</span>
+<span class="pre">$&gt;</span> <span class="pre">./find_agg.py</span> <span class="pre">requirements.json</span> <span class="pre">--tds</span> <span class="pre">-v</span>
+<span class="pre">Starting</span> <span class="pre">search</span> <span class="pre">on</span> <span class="pre">http://esgf-local.ipsl.fr/</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">bcc-csm1-1-m</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CanESM2</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CNRM-CM5</span>
+<span class="pre">[...]</span>
+<span class="pre">Search</span> <span class="pre">complete.</span>
+<span class="pre">`</span></tt>
+- Save XML aggregations to outfile:</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>Shell
+$&gt; ./find_agg.py requirements.json &#8211;xml -v -o
+Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available for bcc-csm1-1
+All XML aggregations available for bcc-csm1-1-m
+All XML aggregations available for CanESM2
+cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+./CCCma/CanCM4/rcp26 does not exist on filesystem
+./CCCma/CanCM4/piControl does not exist on filesystem
+./CCCma/CanCM4/rcp85 does not exist on filesystem
+./CCCma/CanCM4/1pctCO2 does not exist on filesystem
+All XML aggregations available for CNRM-CM5
+[...]
+Search complete.</p>
+<p>$&gt; cat aggregations.list
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/pr/cmip5.bcc-csm1-1.piControl.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/tas/cmip5.bcc-csm1-1.piControl.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/1pctCO2/atmos/mon/pr/cmip5.bcc-csm1-1.1pctCO2.r1i1p1.mon.atmos.Amon.pr.latest.xml
+[...]
+<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>The verbose mode displays missing aggregations or data on filesystem.</p>
+<ul class="simple">
+<li>Find intersection of all available aggregation (XML AND THREDDS) (all available models are displayed twice):</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">`Shell</span>
+<span class="pre">$&gt;</span> <span class="pre">./find_agg.py</span> <span class="pre">requirements.json</span> <span class="pre">--xml</span> <span class="pre">--tds</span> <span class="pre">-i</span>
+<span class="pre">Starting</span> <span class="pre">search</span> <span class="pre">on</span> <span class="pre">http://vesg3.ipsl.fr/</span> <span class="pre">and</span> <span class="pre">in</span> <span class="pre">/prodigfs/esg/xml/CMIP5</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">bcc-csm1-1-m</span>
+<span class="pre">All</span> <span class="pre">XML</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">bcc-csm1-1-m</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CanESM2</span>
+<span class="pre">All</span> <span class="pre">XML</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CanESM2</span>
+<span class="pre">All</span> <span class="pre">THREDDS</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CNRM-CM5</span>
+<span class="pre">All</span> <span class="pre">XML</span> <span class="pre">aggregations</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">CNRM-CM5</span>
+<span class="pre">[...]</span>
+<span class="pre">`</span></tt>
+- You can also print missing data with <tt class="docutils literal"><span class="pre">`missing_data.list`</span></tt> when saved using <tt class="docutils literal"><span class="pre">`-m`</span></tt> option.</p>
+<ul class="simple">
+<li>Full path of output files can be given.</li>
+</ul>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/untitled.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">find_agg 0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Levavasseur, G..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

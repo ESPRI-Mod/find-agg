@@ -163,7 +163,7 @@ def _get_args():
         'inputfile',
         nargs='?',
         type=argparse.FileType('r'),
-        help="""Path of the JSON template with the requirements of the request.\n\n""")
+        help="""Path of the JSON template with the requirements of the request\n(a template can be found in {0}/requirements.json).\n\n""".format(os.path.dirname(os.path.abspath(__file__))))
     parser.add_argument(
         '-h', '--help',
         action="help",
@@ -188,13 +188,13 @@ def _get_args():
         nargs='?',
         type=str,
         const='{0}/aggregations.list'.format(os.getcwd()),
-        help="""Outputfile with available aggregations list\n(default is working directory).\n\n""")
+        help="""Outputfile with available aggregations list\n(default is '{0}/aggregations.list').\n\n""".format(os.getcwd()))
     parser.add_argument(
         '-m', '--missing',
         nargs='?',
         type=str,
         const='{0}/missing_data.list'.format(os.getcwd()),
-        help="""Outputfile with the list of missing data\n(default is working directory).\n\n""")
+        help="""Outputfile with the list of missing data\n(default is '{0}/missing_data.list').\n\n""".format(os.getcwd()))
     parser.add_argument(
         '-l', '--logdir',
         type=str,
@@ -266,7 +266,14 @@ def _log(level, msg):
 
 
 def _get_requirements(path):
-    """Returns loaded configuration information."""
+    """
+    Loads the requierements from the JSON template.
+
+    :param str path: The path of the JSON file with requirements
+    :returns: The configuration information
+    :rtype: *dict*
+
+    """
     try:
         return load(path)
     except:
@@ -274,7 +281,14 @@ def _get_requirements(path):
 
 
 def _get_ensembles_list(ctx):
-    """Returns ensembles list given an institute and model."""
+    """
+    Returns the ensembles list given an institute and a model.
+
+    :param dict ctx: The processing context
+    :returns: The ensembles list without duplicates
+    :rtype: *list*
+
+    """
     ensembles = []
     for experiment in ctx.experiments:
         for variable in ctx.variables:
@@ -290,7 +304,14 @@ def _get_ensembles_list(ctx):
 
 
 def _get_aggregation_urls(ctx):
-    """Yields aggregation urls for processing."""
+    """
+    Yields the aggregations urls for testing.
+
+    :param dict ctx: The processing context
+    :returns: An iterator on rebuild urls
+    :rtype: *iter*
+
+    """
     for experiment, ensemble in product(ctx.experiments, _get_ensembles_list(ctx)):
         for variable in ctx.variables:
             url = [_THREDDS_ROOT]
@@ -305,7 +326,14 @@ def _get_aggregation_urls(ctx):
 
 
 def _get_aggregation_xmls(ctx):
-    """Yields aggregation xmls for processing."""
+    """
+    Like :func:`_get_aggregation_urls`, but returns an iterator on rebuild xml paths.
+
+    :param dict ctx: The processing context
+    :returns: An iterator on rebuild xml paths
+    :rtype: *iter*
+
+    """
     for experiment, ensemble in product(ctx.experiments, _get_ensembles_list(ctx)):
         for variable in ctx.variables:
             xml = os.path.join(_XML_ROOT, experiment)
@@ -323,30 +351,63 @@ def _get_aggregation_xmls(ctx):
 
 
 def _test_url(url):
-    """Returns True if an aggregation url exists."""
+    """
+    Tests an url response.
+
+    :param str url: The url to test
+    :returns: True if the aggregation url exists
+    :rtype: *boolean*
+
+    """
     r = requests.head(url)
     return r.status_code == requests.codes.ok
 
 
 def _test_xml(xml):
-    """Returns True if an aggregation xml exists."""
+    """
+    Like :func:`_test_url`, but tests if an xml path exists.
+
+    :param str xml: The xml path to test
+    :returns: True if the xml aggregation exists
+    :rtype: *boolean*
+
+    """
     return os.path.isfile(xml)
 
 
 def _all_urls_exist(ctx):
-    """Returns flag indicating whether all urls exist or not."""
+    """
+    Returns a flag indicating whether all urls exist or not.
+
+    :param dict ctx: The processing context
+    :returns: True if all aggregation urls exist
+    :rtype: *boolean*
+
+    """
     urls = ctx.pool.map(_test_url, _get_aggregation_urls(ctx))
     return False if not urls else all(urls)
 
 
 def _all_xmls_exist(ctx):
-    """Returns flag indicating whether all urls exist or not."""
+    """
+    Like :func:`_all_urls_exist`, but returns a flag indicating whether all xml paths exist or not.
+
+    :param dict ctx: The processing context
+    :returns: True if all xml aggregation exist
+    :rtype: *boolean*
+
+    """
     xmls = ctx.pool.map(_test_xml, _get_aggregation_xmls(ctx))
     return False if not xmls else all(xmls)
 
 
 def _write_urls(ctx):
-    """Outputs set of urls."""
+    """
+    Writes all available aggregation into output file.
+
+    :param dict ctx: The processing context
+
+    """
     _log('info', 'All THREDDS aggregations available for {0}'.format(ctx.model))
     if ctx.outputfile:
         with open(ctx.outputfile, 'a+') as f:
@@ -355,7 +416,12 @@ def _write_urls(ctx):
 
 
 def _write_xmls(ctx):
-    """Outputs set of xmls."""
+    """
+    Like :func:`_write_urls`, but writes available xml paths into the output file.
+
+    :param dict ctx: The processing context
+
+    """
     _log('info', 'All XML aggregations available for {0}'.format(ctx.model))
     if ctx.outputfile:
         with open(ctx.outputfile, 'a+') as f:
@@ -364,7 +430,14 @@ def _write_xmls(ctx):
 
 
 def _url2path(url):
-    """Convert an aggregation url into a file path"""
+    """
+    Converts an aggregation url into a file path.
+
+    :param str url: The url to convert
+    :returns: The corresponding path on filesystem
+    :rtype: *str*
+
+    """
     path = _CMIP5
     for element in url.split('.')[4:11]:
         path = os.path.join(path, element)
@@ -374,7 +447,14 @@ def _url2path(url):
 
 
 def _get_missing_tree(url):
-    """Return the master missing tree where the data should be."""
+    """
+    Returns the master missing tree where the data should be.
+
+    :param str url: The url to convert using :func:`_url2path`
+    :returns: The child tree where data should be on the filesystem
+    :rtype: *str*
+
+    """
     path = _url2path(url)
     if not os.path.exists(path):
         while not os.path.exists(path):
@@ -384,7 +464,12 @@ def _get_missing_tree(url):
 
 
 def _get_missing_data(ctx):
-    """Returns the sorted list of missing data."""
+    """
+    Writes the sorted list of missing data.
+
+    :param dict ctx: The processing context
+
+    """
     data = filter(lambda m: m is not None, ctx.pool.map(_get_missing_tree, _get_aggregation_urls(ctx)))
     for data in set(sorted(data)):
         if ctx.verbose:
@@ -395,7 +480,12 @@ def _get_missing_data(ctx):
 
 
 def _get_missing_urls(ctx):
-    """Returns the sorted list of missing urls."""
+    """
+    Like :func:`_get_missing_data`, but writes the sorted list of missing aggregations urls.
+
+    :param dict ctx: The processing context
+
+    """
     urls = ifilterfalse(_test_url, _get_aggregation_urls(ctx))
     for url in set(sorted(urls)):
         if ctx.verbose:
@@ -406,7 +496,12 @@ def _get_missing_urls(ctx):
 
 
 def _get_missing_xmls(ctx):
-    """Returns the sorted list of missing xmls."""
+    """
+    Like :func:`_get_missing_urls`, but writes the sorted list of missing xml paths.
+
+    :param dict ctx: The processing context
+
+    """
     xmls = ifilterfalse(_test_xml, _get_aggregation_xmls(ctx))
     for xml in set(sorted(xmls)):
         if ctx.verbose:
@@ -416,11 +511,20 @@ def _get_missing_xmls(ctx):
                 f.write('{0}\n'.format(xml))
 
 
-def main(ctx):
+def main():
     """
     Main entry point for stand-alone call.
 
     """
+    # Initialise processing context
+    args = _get_args()
+    ctx = _ProcessingContext(args, _get_requirements(args.inputfile))
+    if ctx.tds and ctx.xml:
+        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/ and in {0}'.format(_XML_ROOT, url=urlparse(_THREDDS_ROOT)))
+    elif ctx.tds:
+        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/'.format(url=urlparse(_THREDDS_ROOT)))
+    elif ctx.xml:
+        _log('info', '==> Starting search in {0}'.format(_XML_ROOT))
     for ctx.institute in ctx.institutes:
         for ctx.model in ctx.institute.models:
             if ctx.inter:
@@ -450,18 +554,9 @@ def main(ctx):
     # Close thread pool
     ctx.pool.close()
     ctx.pool.join()
-
-
-# Main entry point.
-if __name__ == "__main__":
-    # Initialise processing context
-    args = _get_args()
-    ctx = _ProcessingContext(args, _get_requirements(args.inputfile))
-    if ctx.tds and ctx.xml:
-        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/ and in {0}'.format(_XML_ROOT, url=urlparse(_THREDDS_ROOT)))
-    elif ctx.tds:
-        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/'.format(url=urlparse(_THREDDS_ROOT)))
-    elif ctx.xml:
-        _log('info', '==> Starting search in {0}'.format(_XML_ROOT))
-    main(ctx)
     _log('info', '==> Search complete.')
+
+
+# Main entry point for stand-alone call.
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Code documentation &mdash; find_agg 0.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="find_agg 0.5 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">find_agg 0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="code-documentation">
+<h1>Code documentation<a class="headerlink" href="#code-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-findagg">
+<span id="findagg-py"></span><h2>findagg.py<a class="headerlink" href="#module-findagg" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">platform:</th><td class="field-body">Unix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">synopsis:</th><td class="field-body">CMIP5 aggregation discovery upon local TDS IPSL-ESGF datanode or CICLAD filesystem.</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="findagg._InstituteInfo">
+<em class="property">class </em><tt class="descclassname">findagg.</tt><tt class="descname">_InstituteInfo</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_InstituteInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._InstituteInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the list of models from an institute regarding to the DRS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; The institute to process</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The models from the institute</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>list</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="findagg._ProcessingContext">
+<em class="property">class </em><tt class="descclassname">findagg.</tt><tt class="descname">_ProcessingContext</tt><big>(</big><em>args</em>, <em>requirements</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_ProcessingContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._ProcessingContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulates the following processing context/information for main process:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="20%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>self</em>.ensembles</td>
+<td><em>list</em></td>
+<td>Ensembles from request</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.experiments</td>
+<td><em>list</em></td>
+<td>Experiments from request</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.institute</td>
+<td><em>str</em></td>
+<td>Institute in process</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.institutes</td>
+<td><em>list</em></td>
+<td>institutes from a directory</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.model</td>
+<td><em>str</em></td>
+<td>Model in process</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.outputfile</td>
+<td><em>str</em></td>
+<td>Output list of available aggregations</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.pool</td>
+<td><em>pool object</em></td>
+<td>Pool of workers (from multithreading)</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.urls</td>
+<td><em>list</em></td>
+<td>URLs list to call</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.variables</td>
+<td><em>list</em></td>
+<td>Variables from request</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.verbose</td>
+<td><em>boolean</em></td>
+<td>True if verbose mode</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.miss</td>
+<td><em>boolean</em></td>
+<td>True if output missing data</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.xml</td>
+<td><em>boolean</em></td>
+<td>True to scan XML aggregations</td>
+</tr>
+<tr class="row-even"><td><em>self</em>.tds</td>
+<td><em>boolean</em></td>
+<td>True to scan THREDDS aggregations</td>
+</tr>
+<tr class="row-odd"><td><em>self</em>.inter</td>
+<td><em>boolean</em></td>
+<td>True to scan both aggregations types</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>dict</em>) &#8211; Parsed command-line arguments</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The processing context</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>dict</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="findagg._Exception">
+<em class="property">exception </em><tt class="descclassname">findagg.</tt><tt class="descname">_Exception</tt><big>(</big><em>msg=''</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_Exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._Exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>When an error is encountered, logs a message with the <tt class="docutils literal"><span class="pre">ERROR</span></tt> status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>str</em>) &#8211; Error message to log</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The logged message with the <tt class="docutils literal"><span class="pre">ERROR</span></tt> status</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>str</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_args">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_args</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parsed command-line arguments. See <tt class="docutils literal"><span class="pre">find_agg</span> <span class="pre">-h</span></tt> for full description.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._init_logging">
+<tt class="descclassname">findagg.</tt><tt class="descname">_init_logging</tt><big>(</big><em>logdir</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_init_logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._init_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initiates the logging configuration (output, message formatting). In the case of a logfile, the logfile name is unique and formatted as follows:</p>
+<p>find_agg-YYYYMMDD-HHMMSS-PID.log</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>logdir</strong> (<em>str</em>) &#8211; The relative or absolute logfile directory. If <tt class="docutils literal"><span class="pre">None</span></tt> the standard output is used.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._log">
+<tt class="descclassname">findagg.</tt><tt class="descname">_log</tt><big>(</big><em>level</em>, <em>msg</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Points to the log level as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Log level</th>
+<th class="head">Log function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>debug</td>
+<td>logging.error</td>
+</tr>
+<tr class="row-odd"><td>info</td>
+<td>logging.info</td>
+</tr>
+<tr class="row-even"><td>warning</td>
+<td>logging.warning</td>
+</tr>
+<tr class="row-odd"><td>error</td>
+<td>logging.error</td>
+</tr>
+<tr class="row-even"><td>critical</td>
+<td>logging.critical</td>
+</tr>
+<tr class="row-odd"><td>exception</td>
+<td>logging.exception</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>level</strong> (<em>str</em>) &#8211; The log level</li>
+<li><strong>msg</strong> (<em>str</em>) &#8211; The message to log</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A pointer to the appropriate log method</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><em>dict</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_requirements">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_requirements</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_requirements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_requirements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the requierements from the JSON template.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) &#8211; The path of the JSON file with requirements</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The configuration information</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>dict</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_ensembles_list">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_ensembles_list</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_ensembles_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_ensembles_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ensembles list given an institute and a model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The ensembles list without duplicates</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>list</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_aggregation_urls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_aggregation_urls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_aggregation_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_aggregation_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yields the aggregations urls for testing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterator on rebuild urls</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>iter</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_aggregation_xmls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_aggregation_xmls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_aggregation_xmls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_aggregation_xmls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._get_aggregation_urls" title="findagg._get_aggregation_urls"><tt class="xref py py-func docutils literal"><span class="pre">_get_aggregation_urls()</span></tt></a>, but returns an iterator on rebuild xml paths.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterator on rebuild xml paths</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>iter</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._test_url">
+<tt class="descclassname">findagg.</tt><tt class="descname">_test_url</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_test_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._test_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests an url response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; The url to test</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the aggregation url exists</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>boolean</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._test_xml">
+<tt class="descclassname">findagg.</tt><tt class="descname">_test_xml</tt><big>(</big><em>xml</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_test_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._test_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._test_url" title="findagg._test_url"><tt class="xref py py-func docutils literal"><span class="pre">_test_url()</span></tt></a>, but tests if an xml path exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>xml</strong> (<em>str</em>) &#8211; The xml path to test</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the xml aggregation exists</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>boolean</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._all_urls_exist">
+<tt class="descclassname">findagg.</tt><tt class="descname">_all_urls_exist</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_all_urls_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._all_urls_exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a flag indicating whether all urls exist or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if all aggregation urls exist</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>boolean</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._all_xmls_exist">
+<tt class="descclassname">findagg.</tt><tt class="descname">_all_xmls_exist</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_all_xmls_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._all_xmls_exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._all_urls_exist" title="findagg._all_urls_exist"><tt class="xref py py-func docutils literal"><span class="pre">_all_urls_exist()</span></tt></a>, but returns a flag indicating whether all xml paths exist or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if all xml aggregation exist</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>boolean</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._write_urls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_write_urls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_write_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._write_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes all available aggregation into output file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._write_xmls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_write_xmls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_write_xmls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._write_xmls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._write_urls" title="findagg._write_urls"><tt class="xref py py-func docutils literal"><span class="pre">_write_urls()</span></tt></a>, but writes available xml paths into the output file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._url2path">
+<tt class="descclassname">findagg.</tt><tt class="descname">_url2path</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_url2path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._url2path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an aggregation url into a file path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; The url to convert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The corresponding path on filesystem</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>str</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_missing_tree">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_missing_tree</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_missing_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_missing_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the master missing tree where the data should be.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>url</strong> (<em>str</em>) &#8211; The url to convert using <a class="reference internal" href="#findagg._url2path" title="findagg._url2path"><tt class="xref py py-func docutils literal"><span class="pre">_url2path()</span></tt></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The child tree where data should be on the filesystem</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><em>str</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_missing_data">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_missing_data</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_missing_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_missing_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the sorted list of missing data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_missing_urls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_missing_urls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_missing_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_missing_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._get_missing_data" title="findagg._get_missing_data"><tt class="xref py py-func docutils literal"><span class="pre">_get_missing_data()</span></tt></a>, but writes the sorted list of missing aggregations urls.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg._get_missing_xmls">
+<tt class="descclassname">findagg.</tt><tt class="descname">_get_missing_xmls</tt><big>(</big><em>ctx</em><big>)</big><a class="reference internal" href="_modules/findagg.html#_get_missing_xmls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg._get_missing_xmls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#findagg._get_missing_urls" title="findagg._get_missing_urls"><tt class="xref py py-func docutils literal"><span class="pre">_get_missing_urls()</span></tt></a>, but writes the sorted list of missing xml paths.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ctx</strong> (<em>dict</em>) &#8211; The processing context</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="findagg.main">
+<tt class="descclassname">findagg.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/findagg.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#findagg.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main entry point for stand-alone call.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Code documentation</a><ul>
+<li><a class="reference internal" href="#module-findagg">findagg.py</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/autodoc.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">find_agg 0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Levavasseur, G..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
