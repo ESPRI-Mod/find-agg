@@ -1,0 +1,13 @@
+{
+
+   "_help" : "Set below your required variables, experiments and ensembles following the CMIP5 vocabulary. Be sure to keep the correct JSON syntax (brackets, braces, comma) following this template. This comment line is ignored by Python script and can be deleted if desired",
+
+   "variables":
+      {
+      "pr":  ["mon", "atmos", "Amon"],
+      "tas": ["mon", "atmos", "Amon"]
+      },
+   "experiments": ["piControl", "1pctCO2", "rcp26", "rcp45", "rcp85"],
+   "ensembles":   ["r1i1p1"]
+
+}

@@ -23,39 +23,31 @@ from multiprocessing.dummy import Pool as ThreadPool
 __version__ = '{0} {1}-{2}-{3}'.format('v0.5', '2015', '07', '06')
 
 # THREDDS server root url
-_THREDDS_ROOT = 'http://esgf-local.ipsl.fr/thredds/dodsC/cmip5.merge'
+THREDDS_ROOT = 'http://esgf-local.ipsl.fr/thredds/dodsC/cmip5.merge'
 
 # THREDDS aggregation html file extension
-_THREDDS_AGGREGATION_HTML_EXT = '1.aggregation.1.html'
+THREDDS_AGGREGATION_HTML_EXT = '1.aggregation.1.html'
 
 # THREDDS aggregation html file extension
-_XML_AGGREGATION_EXT = 'latest.xml'
+XML_AGGREGATION_EXT = 'latest.xml'
 
 # Filesystem CMIP5 root folder
-_CMIP5 = '/prodigfs/esg/CMIP5/merge'
+CMIP5 = '/prodigfs/esg/CMIP5/merge'
 
 # Project
-_PROJECT = 'cmip5'
+PROJECT = 'cmip5'
 
 # Filesystem CMIP5 xml root folder
-_XML_ROOT = '/prodigfs/esg/xml/CMIP5'
+XML_ROOT = '/prodigfs/esg/xml/CMIP5'
 
 # Latest file version literal
-_LATEST = 'latest'
+LATEST = 'latest'
 
 # Throttle upon number of threads to spawn
-_THREAD_POOL_SIZE = 4
-
-# Log levels
-_LEVELS = {'debug': logging.error,
-           'info': logging.info,
-           'warning': logging.warning,
-           'error': logging.error,
-           'critical': logging.critical,
-           'exception': logging.exception}
+THREAD_POOL_SIZE = 4
 
 
-class _InstituteInfo(object):
+class InstituteInfo(object):
     """
     Gives the list of models from an institute regarding to the DRS.
 
@@ -66,10 +58,10 @@ class _InstituteInfo(object):
     """
     def __init__(self, name):
         self.name = name
-        self.models = os.listdir(os.path.join(_CMIP5, name))
+        self.models = os.listdir(os.path.join(CMIP5, name))
 
 
-class _ProcessingContext(object):
+class ProcessingContext(object):
     """
     Encapsulates the following processing context/information for main process:
 
@@ -108,17 +100,19 @@ class _ProcessingContext(object):
     :param dict args: Parsed command-line arguments
     :returns: The processing context
     :rtype: *dict*
+    :raises Error: If no ``--tds`` or ``--xml`` flag is set
+    :raises Error: If the ``--inter`` option is set without both of ``--tds`` and ``--xml`` flags
 
     """
     def __init__(self, args, requirements):
-        _init_logging(args.logdir)
+        init_logging(args.logdir)
         self.ensembles = requirements['ensembles']
         self.experiments = requirements['experiments']
         self.institute = None
-        self.institutes = map(_InstituteInfo, os.listdir(_CMIP5))
+        self.institutes = map(InstituteInfo, os.listdir(CMIP5))
         self.model = None
         self.outputfile = args.outputfile
-        self.pool = ThreadPool(_THREAD_POOL_SIZE)
+        self.pool = ThreadPool(THREAD_POOL_SIZE)
         self.urls = None
         self.variables = requirements['variables']
         self.verbose = args.verbose
@@ -126,30 +120,13 @@ class _ProcessingContext(object):
         self.xml = args.xml
         self.tds = args.tds
         if not self.xml and not self.tds:
-            raise _Exception('One of --tds or --xml options must be given')
+            raise Exception('One of --tds or --xml options must be given')
         self.inter = args.inter
-        if self.inter and not (self.xml or self.tds):
-            raise _Exception('--inter option required both --tds and --xml options')
+        if self.inter and not (self.xml and self.tds):
+            raise Exception('--inter option required both --tds and --xml options')
 
 
-class _Exception(Exception):
-    """
-    When an error is encountered, logs a message with the ``ERROR`` status.
-
-    :param str msg: Error message to log
-    :returns: The logged message with the ``ERROR`` status
-    :rtype: *str*
-
-    """
-    def __init__(self, msg=''):
-        self.msg = msg
-
-    def __str__(self):
-        print
-        _log('error', self.msg)
-
-
-def _get_args():
+def get_args():
     """
     Returns parsed command-line arguments. See ``find_agg -h`` for full description.
 
@@ -214,17 +191,18 @@ def _get_args():
     return parser.parse_args()
 
 
-def _init_logging(logdir):
+def init_logging(logdir):
     """
-    Initiates the logging configuration (output, message formatting). In the case of a logfile, the logfile name is unique and formatted as follows:\n
-    find_agg-YYYYMMDD-HHMMSS-PID.log
+    Initiates the logging configuration (output, message formatting). In the case of a logfile, the logfile name is unique and formatted as follows:
+    name-YYYYMMDD-HHMMSS-PID.log
 
     :param str logdir: The relative or absolute logfile directory. If ``None`` the standard output is used.
 
     """
     logging.getLogger("requests").setLevel(logging.CRITICAL)  # Disables logging message from request library
     if logdir:
-        logfile = 'find_agg-{0}-{1}.log'.format(datetime.now().strftime("%Y%m%d-%H%M%S"), os.getpid())
+        name = os.path.splitext(os.path.basename(os.path.abspath(__file__)))[0]
+        logfile = '{0}-{1}-{2}.log'.format(name, datetime.now().strftime("%Y%m%d-%H%M%S"), os.getpid())
         if not os.path.exists(logdir):
             os.makedirs(logdir)
         logging.basicConfig(filename=os.path.join(logdir, logfile),
@@ -236,55 +214,27 @@ def _init_logging(logdir):
                             format='%(message)s')
 
 
-def _log(level, msg):
-    """
-    Points to the log level as follows:
-
-    +-----------+-------------------+
-    | Log level | Log function      |
-    +===========+===================+
-    | debug     | logging.error     |
-    +-----------+-------------------+
-    | info      | logging.info      |
-    +-----------+-------------------+
-    | warning   | logging.warning   |
-    +-----------+-------------------+
-    | error     | logging.error     |
-    +-----------+-------------------+
-    | critical  | logging.critical  |
-    +-----------+-------------------+
-    | exception | logging.exception |
-    +-----------+-------------------+
-
-    :param str level: The log level
-    :param str msg: The message to log
-    :returns: A pointer to the appropriate log method
-    :rtype: *dict*
-
-    """
-    return _LEVELS[level](msg)
-
-
-def _get_requirements(path):
+def get_requirements(path):
     """
     Loads the requierements from the JSON template.
 
     :param str path: The path of the JSON file with requirements
     :returns: The configuration information
     :rtype: *dict*
+    :raises Error: If the JSON file parsing fails
 
     """
     try:
         return load(path)
     except:
-        raise _Exception('{0} is not a valid JSON file'.format(path))
+        raise Exception('{0} is not a valid JSON file'.format(path))
 
 
-def _get_ensembles_list(ctx):
+def get_ensembles_list(ctx):
     """
     Returns the ensembles list given an institute and a model.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
     :returns: The ensembles list without duplicates
     :rtype: *list*
 
@@ -293,7 +243,7 @@ def _get_ensembles_list(ctx):
     for experiment in ctx.experiments:
         for variable in ctx.variables:
             path = []
-            path.append(_CMIP5)
+            path.append(CMIP5)
             path.append(ctx.institute.name)
             path.append(ctx.model)
             path.append(experiment)
@@ -303,69 +253,73 @@ def _get_ensembles_list(ctx):
     return list(set(ensembles))
 
 
-def _get_aggregation_urls(ctx):
+def get_aggregation_urls(ctx):
     """
     Yields the aggregations urls for testing.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
     :returns: An iterator on rebuild urls
     :rtype: *iter*
 
     """
-    for experiment, ensemble in product(ctx.experiments, _get_ensembles_list(ctx)):
+    for experiment, ensemble in product(ctx.experiments, get_ensembles_list(ctx)):
         for variable in ctx.variables:
-            url = [_THREDDS_ROOT]
+            url = [THREDDS_ROOT]
             url.append(ctx.institute.name)
             url.append(ctx.model)
             url.append(experiment)
             url += ctx.variables[variable]
             url.append(ensemble)
             url.append(variable)
-            url.append(_THREDDS_AGGREGATION_HTML_EXT)
+            url.append(THREDDS_AGGREGATION_HTML_EXT)
             yield '.'.join(url)
 
 
-def _get_aggregation_xmls(ctx):
+def get_aggregation_xmls(ctx):
     """
-    Like :func:`_get_aggregation_urls`, but returns an iterator on rebuild xml paths.
+    Like :func:`get_aggregation_urls`, but returns an iterator on rebuild xml paths.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
     :returns: An iterator on rebuild xml paths
     :rtype: *iter*
 
     """
-    for experiment, ensemble in product(ctx.experiments, _get_ensembles_list(ctx)):
+    for experiment, ensemble in product(ctx.experiments, get_ensembles_list(ctx)):
         for variable in ctx.variables:
-            xml = os.path.join(_XML_ROOT, experiment)
+            xml = os.path.join(XML_ROOT, experiment)
             xml = os.path.join(xml, ctx.variables[variable][1])
             xml = os.path.join(xml, ctx.variables[variable][0])
             xml = os.path.join(xml, variable)
-            xml = [os.path.join(xml, _PROJECT)]
+            xml = [os.path.join(xml, PROJECT)]
             xml.append(ctx.model)
             xml.append(experiment)
             xml.append(ensemble)
             xml += ctx.variables[variable]
             xml.append(variable)
-            xml.append(_XML_AGGREGATION_EXT)
+            xml.append(XML_AGGREGATION_EXT)
             yield '.'.join(xml)
 
 
-def _test_url(url):
+def test_url(url):
     """
     Tests an url response.
 
     :param str url: The url to test
     :returns: True if the aggregation url exists
     :rtype: *boolean*
+    :raises Error: If an HTTP request fails
 
     """
-    r = requests.head(url)
-    return r.status_code == requests.codes.ok
+    try:
+        r = requests.head(url)
+        return r.status_code == requests.codes.ok
+    except:
+        logging.exception('An URL test fails:')
 
 
-def _test_xml(xml):
+def test_xml(xml):
     """
-    Like :func:`_test_url`, but tests if an xml path exists.
+    Like :func:`test_url`, but tests if an xml path exists.
 
     :param str xml: The xml path to test
     :returns: True if the xml aggregation exists
@@ -375,61 +329,61 @@ def _test_xml(xml):
     return os.path.isfile(xml)
 
 
-def _all_urls_exist(ctx):
+def all_urls_exist(ctx):
     """
     Returns a flag indicating whether all urls exist or not.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
     :returns: True if all aggregation urls exist
     :rtype: *boolean*
 
     """
-    urls = ctx.pool.map(_test_url, _get_aggregation_urls(ctx))
+    urls = ctx.pool.map(test_url, get_aggregation_urls(ctx))
     return False if not urls else all(urls)
 
 
-def _all_xmls_exist(ctx):
+def all_xmls_exist(ctx):
     """
-    Like :func:`_all_urls_exist`, but returns a flag indicating whether all xml paths exist or not.
+    Like :func:`all_urls_exist`, but returns a flag indicating whether all xml paths exist or not.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
     :returns: True if all xml aggregation exist
     :rtype: *boolean*
 
     """
-    xmls = ctx.pool.map(_test_xml, _get_aggregation_xmls(ctx))
+    xmls = ctx.pool.map(test_xml, get_aggregation_xmls(ctx))
     return False if not xmls else all(xmls)
 
 
-def _write_urls(ctx):
+def write_urls(ctx):
     """
     Writes all available aggregations into output file.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
 
     """
-    _log('info', 'All THREDDS aggregations available for {0}'.format(ctx.model))
+    logging.info('All THREDDS aggregations available for {0}'.format(ctx.model))
     if ctx.outputfile:
         with open(ctx.outputfile, 'a+') as f:
-            for url in _get_aggregation_urls(ctx):
+            for url in get_aggregation_urls(ctx):
                 f.write('{0}\n'.format(url.replace('.html', '')))
 
 
-def _write_xmls(ctx):
+def write_xmls(ctx):
     """
-    Like :func:`_write_urls`, but writes available xml paths into the output file.
+    Like :func:`write_urls`, but writes available xml paths into the output file.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
 
     """
-    _log('info', 'All XML aggregations available for {0}'.format(ctx.model))
+    logging.info('All XML aggregations available for {0}'.format(ctx.model))
     if ctx.outputfile:
         with open(ctx.outputfile, 'a+') as f:
-            for xml in _get_aggregation_xmls(ctx):
+            for xml in get_aggregation_xmls(ctx):
                 f.write('{0}\n'.format(xml))
 
 
-def _url2path(url):
+def url2path(url):
     """
     Converts an aggregation url into a file path.
 
@@ -438,24 +392,24 @@ def _url2path(url):
     :rtype: *str*
 
     """
-    path = _CMIP5
+    path = CMIP5
     for element in url.split('.')[4:11]:
         path = os.path.join(path, element)
-    path = os.path.join(path, _LATEST)
+    path = os.path.join(path, LATEST)
     path = os.path.join(path, url.split('.')[11])
     return path
 
 
-def _get_missing_tree(url):
+def get_missing_tree(url):
     """
     Returns the master missing tree where the data should be.
 
-    :param str url: The url to convert using :func:`_url2path`
+    :param str url: The url to convert using :func:`url2path`
     :returns: The child tree where data should be on the filesystem
     :rtype: *str*
 
     """
-    path = _url2path(url)
+    path = url2path(url)
     if not os.path.exists(path):
         while not os.path.exists(path):
             child = path
@@ -463,49 +417,49 @@ def _get_missing_tree(url):
         return child
 
 
-def _get_missing_data(ctx):
+def get_missing_data(ctx):
     """
     Writes the sorted list of missing data.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
 
     """
-    data = filter(lambda m: m is not None, ctx.pool.map(_get_missing_tree, _get_aggregation_urls(ctx)))
+    data = filter(lambda m: m is not None, ctx.pool.map(get_missing_tree, get_aggregation_urls(ctx)))
     for data in set(sorted(data)):
         if ctx.verbose:
-            _log('warning', '{0} does not exist on filesystem'.format(data.replace(_CMIP5, '.')))
+            logging.warning('{0} does not exist on filesystem'.format(data.replace(CMIP5, '.')))
         if ctx.miss:
             with open(ctx.miss, 'a+') as f:
                 f.write('{0}\n'.format(data))
 
 
-def _get_missing_urls(ctx):
+def get_missing_urls(ctx):
     """
-    Like :func:`_get_missing_data`, but writes the sorted list of missing aggregations urls.
+    Like :func:`get_missing_data`, but writes the sorted list of missing aggregations urls.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
 
     """
-    urls = ifilterfalse(_test_url, _get_aggregation_urls(ctx))
+    urls = ifilterfalse(test_url, get_aggregation_urls(ctx))
     for url in set(sorted(urls)):
         if ctx.verbose:
-            _log('warning', '{0} not available on THREDDS catalog'.format(os.path.splitext(os.path.basename(url))[0]))
+            logging.warning('{0} not available on THREDDS catalog'.format(os.path.splitext(os.path.basename(url))[0]))
         if ctx.miss:
             with open(ctx.miss, 'a+') as f:
                 f.write('{0}\n'.format(url))
 
 
-def _get_missing_xmls(ctx):
+def get_missing_xmls(ctx):
     """
-    Like :func:`_get_missing_urls`, but writes the sorted list of missing xml paths.
+    Like :func:`get_missing_urls`, but writes the sorted list of missing xml paths.
 
-    :param dict ctx: The processing context
+    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)
 
     """
-    xmls = ifilterfalse(_test_xml, _get_aggregation_xmls(ctx))
+    xmls = ifilterfalse(test_xml, get_aggregation_xmls(ctx))
     for xml in set(sorted(xmls)):
         if ctx.verbose:
-            _log('warning', '{0} not available in {1}'.format(os.path.basename(xml), _XML_ROOT))
+            logging.warning('{0} not available in {1}'.format(os.path.basename(xml), XML_ROOT))
         if ctx.miss:
             with open(ctx.miss, 'a+') as f:
                 f.write('{0}\n'.format(xml))
@@ -513,48 +467,53 @@ def _get_missing_xmls(ctx):
 
 def main():
     """
-    Main entry point for stand-alone call.
+    Main process that\:
+     * Instanciates processing context,
+     * Tests all THREDDS aggregations URL,
+     * Tests all XML aggregations paths,
+     * Checks if data exist when aggregation is missing,
+     * Prints or logs the search results.
 
     """
     # Initialise processing context
-    args = _get_args()
-    ctx = _ProcessingContext(args, _get_requirements(args.inputfile))
+    args = get_args()
+    ctx = ProcessingContext(args, get_requirements(args.inputfile))
     if ctx.tds and ctx.xml:
-        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/ and in {0}'.format(_XML_ROOT, url=urlparse(_THREDDS_ROOT)))
+        logging.info('==> Starting search on {url.scheme}://{url.netloc}/ and in {0}'.format(XML_ROOT, url=urlparse(THREDDS_ROOT)))
     elif ctx.tds:
-        _log('info', '==> Starting search on {url.scheme}://{url.netloc}/'.format(url=urlparse(_THREDDS_ROOT)))
+        logging.info('==> Starting search on {url.scheme}://{url.netloc}/'.format(url=urlparse(THREDDS_ROOT)))
     elif ctx.xml:
-        _log('info', '==> Starting search in {0}'.format(_XML_ROOT))
+        logging.info('==> Starting search in {0}'.format(XML_ROOT))
     for ctx.institute in ctx.institutes:
         for ctx.model in ctx.institute.models:
             if ctx.inter:
-                if _all_xmls_exist(ctx) and _all_urls_exist(ctx):
-                    _write_urls(ctx)
-                    _write_xmls(ctx)
+                if all_xmls_exist(ctx) and all_urls_exist(ctx):
+                    write_urls(ctx)
+                    write_xmls(ctx)
                 else:
-                    _get_missing_urls(ctx)
-                    _get_missing_xmls(ctx)
-                    _get_missing_data(ctx)
+                    get_missing_urls(ctx)
+                    get_missing_xmls(ctx)
+                    get_missing_data(ctx)
             else:
                 check_data = False
                 if ctx.tds:
-                    if _all_urls_exist(ctx):
-                        _write_urls(ctx)
+                    if all_urls_exist(ctx):
+                        write_urls(ctx)
                     else:
-                        _get_missing_urls(ctx)
+                        get_missing_urls(ctx)
                         check_data = True
                 if ctx.xml:
-                    if _all_xmls_exist(ctx):
-                        _write_xmls(ctx)
+                    if all_xmls_exist(ctx):
+                        write_xmls(ctx)
                     else:
-                        _get_missing_xmls(ctx)
+                        get_missing_xmls(ctx)
                         check_data = True
                 if check_data:
-                    _get_missing_data(ctx)
+                    get_missing_data(ctx)
     # Close thread pool
     ctx.pool.close()
     ctx.pool.join()
-    _log('info', '==> Search complete.')
+    logging.info('==> Search complete.')
 
 
 # Main entry point for stand-alone call.

@@ -179,7 +179,7 @@ All XML aggregations available <span class="k">for </span>CanESM2
 </pre></div>
 </div>
 <p>Use verbose mode to print missing data:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$&gt;</span> find_agg findagg/requirements.json --xml -v
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$&gt;</span> find_agg /path/to/your/requirements.json --xml -v
 <span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
 All XML aggregations available <span class="k">for </span>bcc-csm1-1
 All XML aggregations available <span class="k">for </span>bcc-csm1-1-m
@@ -201,9 +201,9 @@ cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigf
 </pre></div>
 </div>
 <p>To use a logfile (the logfile directory is optionnal):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$&gt;</span> find_agg findagg/requirements.json --xml -l /path/to/logfile
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$&gt;</span> find_agg /path/to/your/requirements.json --xml -l /path/to/logfile
 
-<span class="nv">$&gt;</span> cat /path/to/logfile/find_agg-YYYYMMDD-HHMMSS-PID.log
+<span class="nv">$&gt;</span> cat /path/to/logfile/findagg-YYYYMMDD-HHMMSS-PID.log
 cat find_agg-20150707-143316-29540.log
 YYYY/MM/DD HH:MM:SS PM <span class="nv">INFO</span> <span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
 YYYY/MM/DD HH:MM:SS PM INFO All XML aggregations available <span class="k">for </span>bcc-csm1-1

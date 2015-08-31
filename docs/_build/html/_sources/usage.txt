@@ -145,7 +145,7 @@ Use verbose mode to print missing data:
 
 .. code-block:: bash
 
-   $> find_agg findagg/requirements.json --xml -v
+   $> find_agg /path/to/your/requirements.json --xml -v
    ==> Starting search in /prodigfs/esg/xml/CMIP5
    All XML aggregations available for bcc-csm1-1
    All XML aggregations available for bcc-csm1-1-m
@@ -169,9 +169,9 @@ To use a logfile (the logfile directory is optionnal):
 
 .. code-block:: bash
 
-   $> find_agg findagg/requirements.json --xml -l /path/to/logfile
+   $> find_agg /path/to/your/requirements.json --xml -l /path/to/logfile
 
-   $> cat /path/to/logfile/find_agg-YYYYMMDD-HHMMSS-PID.log
+   $> cat /path/to/logfile/findagg-YYYYMMDD-HHMMSS-PID.log
    cat find_agg-20150707-143316-29540.log 
    YYYY/MM/DD HH:MM:SS PM INFO ==> Starting search in /prodigfs/esg/xml/CMIP5
    YYYY/MM/DD HH:MM:SS PM INFO All XML aggregations available for bcc-csm1-1
