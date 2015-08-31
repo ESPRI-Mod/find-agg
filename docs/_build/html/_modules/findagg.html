@@ -72,39 +72,31 @@
 <span class="n">__version__</span> <span class="o">=</span> <span class="s">&#39;{0} {1}-{2}-{3}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">&#39;v0.5&#39;</span><span class="p">,</span> <span class="s">&#39;2015&#39;</span><span class="p">,</span> <span class="s">&#39;07&#39;</span><span class="p">,</span> <span class="s">&#39;06&#39;</span><span class="p">)</span>
 
 <span class="c"># THREDDS server root url</span>
-<span class="n">_THREDDS_ROOT</span> <span class="o">=</span> <span class="s">&#39;http://esgf-local.ipsl.fr/thredds/dodsC/cmip5.merge&#39;</span>
+<span class="n">THREDDS_ROOT</span> <span class="o">=</span> <span class="s">&#39;http://esgf-local.ipsl.fr/thredds/dodsC/cmip5.merge&#39;</span>
 
 <span class="c"># THREDDS aggregation html file extension</span>
-<span class="n">_THREDDS_AGGREGATION_HTML_EXT</span> <span class="o">=</span> <span class="s">&#39;1.aggregation.1.html&#39;</span>
+<span class="n">THREDDS_AGGREGATION_HTML_EXT</span> <span class="o">=</span> <span class="s">&#39;1.aggregation.1.html&#39;</span>
 
 <span class="c"># THREDDS aggregation html file extension</span>
-<span class="n">_XML_AGGREGATION_EXT</span> <span class="o">=</span> <span class="s">&#39;latest.xml&#39;</span>
+<span class="n">XML_AGGREGATION_EXT</span> <span class="o">=</span> <span class="s">&#39;latest.xml&#39;</span>
 
 <span class="c"># Filesystem CMIP5 root folder</span>
-<span class="n">_CMIP5</span> <span class="o">=</span> <span class="s">&#39;/prodigfs/esg/CMIP5/merge&#39;</span>
+<span class="n">CMIP5</span> <span class="o">=</span> <span class="s">&#39;/prodigfs/esg/CMIP5/merge&#39;</span>
 
 <span class="c"># Project</span>
-<span class="n">_PROJECT</span> <span class="o">=</span> <span class="s">&#39;cmip5&#39;</span>
+<span class="n">PROJECT</span> <span class="o">=</span> <span class="s">&#39;cmip5&#39;</span>
 
 <span class="c"># Filesystem CMIP5 xml root folder</span>
-<span class="n">_XML_ROOT</span> <span class="o">=</span> <span class="s">&#39;/prodigfs/esg/xml/CMIP5&#39;</span>
+<span class="n">XML_ROOT</span> <span class="o">=</span> <span class="s">&#39;/prodigfs/esg/xml/CMIP5&#39;</span>
 
 <span class="c"># Latest file version literal</span>
-<span class="n">_LATEST</span> <span class="o">=</span> <span class="s">&#39;latest&#39;</span>
+<span class="n">LATEST</span> <span class="o">=</span> <span class="s">&#39;latest&#39;</span>
 
 <span class="c"># Throttle upon number of threads to spawn</span>
-<span class="n">_THREAD_POOL_SIZE</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="c"># Log levels</span>
-<span class="n">_LEVELS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;debug&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">,</span>
-           <span class="s">&#39;info&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">,</span>
-           <span class="s">&#39;warning&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">,</span>
-           <span class="s">&#39;error&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">,</span>
-           <span class="s">&#39;critical&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">,</span>
-           <span class="s">&#39;exception&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">}</span>
+<span class="n">THREAD_POOL_SIZE</span> <span class="o">=</span> <span class="mi">4</span>
 
 
-<div class="viewcode-block" id="_InstituteInfo"><a class="viewcode-back" href="../autodoc.html#findagg._InstituteInfo">[docs]</a><span class="k">class</span> <span class="nc">_InstituteInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="InstituteInfo"><a class="viewcode-back" href="../autodoc.html#findagg.InstituteInfo">[docs]</a><span class="k">class</span> <span class="nc">InstituteInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gives the list of models from an institute regarding to the DRS.</span>
 
@@ -115,10 +107,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">models</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_CMIP5</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">models</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CMIP5</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_ProcessingContext"><a class="viewcode-back" href="../autodoc.html#findagg._ProcessingContext">[docs]</a><span class="k">class</span> <span class="nc">_ProcessingContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcessingContext"><a class="viewcode-back" href="../autodoc.html#findagg.ProcessingContext">[docs]</a><span class="k">class</span> <span class="nc">ProcessingContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encapsulates the following processing context/information for main process:</span>
 
@@ -157,17 +149,19 @@
 <span class="sd">    :param dict args: Parsed command-line arguments</span>
 <span class="sd">    :returns: The processing context</span>
 <span class="sd">    :rtype: *dict*</span>
+<span class="sd">    :raises Error: If no ``--tds`` or ``--xml`` flag is set</span>
+<span class="sd">    :raises Error: If the ``--inter`` option is set without both of ``--tds`` and ``--xml`` flags</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">requirements</span><span class="p">):</span>
-        <span class="n">_init_logging</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">logdir</span><span class="p">)</span>
+        <span class="n">init_logging</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">logdir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensembles</span> <span class="o">=</span> <span class="n">requirements</span><span class="p">[</span><span class="s">&#39;ensembles&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiments</span> <span class="o">=</span> <span class="n">requirements</span><span class="p">[</span><span class="s">&#39;experiments&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">institute</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">institutes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_InstituteInfo</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">_CMIP5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">institutes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">InstituteInfo</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CMIP5</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputfile</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">outputfile</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">_THREAD_POOL_SIZE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">THREAD_POOL_SIZE</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">urls</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="n">requirements</span><span class="p">[</span><span class="s">&#39;variables&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span>
@@ -175,30 +169,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xml</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">xml</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tds</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">tds</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tds</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">_Exception</span><span class="p">(</span><span class="s">&#39;One of --tds or --xml options must be given&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;One of --tds or --xml options must be given&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">inter</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xml</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">tds</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">_Exception</span><span class="p">(</span><span class="s">&#39;--inter option required both --tds and --xml options&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inter</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xml</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">tds</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;--inter option required both --tds and --xml options&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_Exception"><a class="viewcode-back" href="../autodoc.html#findagg._Exception">[docs]</a><span class="k">class</span> <span class="nc">_Exception</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    When an error is encountered, logs a message with the ``ERROR`` status.</span>
-
-<span class="sd">    :param str msg: Error message to log</span>
-<span class="sd">    :returns: The logged message with the ``ERROR`` status</span>
-<span class="sd">    :rtype: *str*</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
-
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span>
-        <span class="n">_log</span><span class="p">(</span><span class="s">&#39;error&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
-
-</div>
-<div class="viewcode-block" id="_get_args"><a class="viewcode-back" href="../autodoc.html#findagg._get_args">[docs]</a><span class="k">def</span> <span class="nf">_get_args</span><span class="p">():</span>
+<div class="viewcode-block" id="get_args"><a class="viewcode-back" href="../autodoc.html#findagg.get_args">[docs]</a><span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns parsed command-line arguments. See ``find_agg -h`` for full description.</span>
 
@@ -263,17 +240,18 @@
     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="_init_logging"><a class="viewcode-back" href="../autodoc.html#findagg._init_logging">[docs]</a><span class="k">def</span> <span class="nf">_init_logging</span><span class="p">(</span><span class="n">logdir</span><span class="p">):</span>
+<div class="viewcode-block" id="init_logging"><a class="viewcode-back" href="../autodoc.html#findagg.init_logging">[docs]</a><span class="k">def</span> <span class="nf">init_logging</span><span class="p">(</span><span class="n">logdir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Initiates the logging configuration (output, message formatting). In the case of a logfile, the logfile name is unique and formatted as follows:\n</span>
-<span class="sd">    find_agg-YYYYMMDD-HHMMSS-PID.log</span>
+<span class="sd">    Initiates the logging configuration (output, message formatting). In the case of a logfile, the logfile name is unique and formatted as follows:</span>
+<span class="sd">    name-YYYYMMDD-HHMMSS-PID.log</span>
 
 <span class="sd">    :param str logdir: The relative or absolute logfile directory. If ``None`` the standard output is used.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;requests&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>  <span class="c"># Disables logging message from request library</span>
     <span class="k">if</span> <span class="n">logdir</span><span class="p">:</span>
-        <span class="n">logfile</span> <span class="o">=</span> <span class="s">&#39;find_agg-{0}-{1}.log&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y%m</span><span class="si">%d</span><span class="s">-%H%M%S&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">logfile</span> <span class="o">=</span> <span class="s">&#39;{0}-{1}-{2}.log&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y%m</span><span class="si">%d</span><span class="s">-%H%M%S&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logdir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">logdir</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">logdir</span><span class="p">,</span> <span class="n">logfile</span><span class="p">),</span>
@@ -285,55 +263,27 @@
                             <span class="n">format</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_log"><a class="viewcode-back" href="../autodoc.html#findagg._log">[docs]</a><span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Points to the log level as follows:</span>
-
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | Log level | Log function      |</span>
-<span class="sd">    +===========+===================+</span>
-<span class="sd">    | debug     | logging.error     |</span>
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | info      | logging.info      |</span>
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | warning   | logging.warning   |</span>
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | error     | logging.error     |</span>
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | critical  | logging.critical  |</span>
-<span class="sd">    +-----------+-------------------+</span>
-<span class="sd">    | exception | logging.exception |</span>
-<span class="sd">    +-----------+-------------------+</span>
-
-<span class="sd">    :param str level: The log level</span>
-<span class="sd">    :param str msg: The message to log</span>
-<span class="sd">    :returns: A pointer to the appropriate log method</span>
-<span class="sd">    :rtype: *dict*</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_LEVELS</span><span class="p">[</span><span class="n">level</span><span class="p">](</span><span class="n">msg</span><span class="p">)</span>
-
-</div>
-<div class="viewcode-block" id="_get_requirements"><a class="viewcode-back" href="../autodoc.html#findagg._get_requirements">[docs]</a><span class="k">def</span> <span class="nf">_get_requirements</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="get_requirements"><a class="viewcode-back" href="../autodoc.html#findagg.get_requirements">[docs]</a><span class="k">def</span> <span class="nf">get_requirements</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Loads the requierements from the JSON template.</span>
 
 <span class="sd">    :param str path: The path of the JSON file with requirements</span>
 <span class="sd">    :returns: The configuration information</span>
 <span class="sd">    :rtype: *dict*</span>
+<span class="sd">    :raises Error: If the JSON file parsing fails</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">_Exception</span><span class="p">(</span><span class="s">&#39;{0} is not a valid JSON file&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;{0} is not a valid JSON file&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_get_ensembles_list"><a class="viewcode-back" href="../autodoc.html#findagg._get_ensembles_list">[docs]</a><span class="k">def</span> <span class="nf">_get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_ensembles_list"><a class="viewcode-back" href="../autodoc.html#findagg.get_ensembles_list">[docs]</a><span class="k">def</span> <span class="nf">get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the ensembles list given an institute and a model.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 <span class="sd">    :returns: The ensembles list without duplicates</span>
 <span class="sd">    :rtype: *list*</span>
 
@@ -342,7 +292,7 @@
     <span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">experiments</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_CMIP5</span><span class="p">)</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CMIP5</span><span class="p">)</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">institute</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
@@ -352,69 +302,73 @@
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ensembles</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_get_aggregation_urls"><a class="viewcode-back" href="../autodoc.html#findagg._get_aggregation_urls">[docs]</a><span class="k">def</span> <span class="nf">_get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_aggregation_urls"><a class="viewcode-back" href="../autodoc.html#findagg.get_aggregation_urls">[docs]</a><span class="k">def</span> <span class="nf">get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Yields the aggregations urls for testing.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 <span class="sd">    :returns: An iterator on rebuild urls</span>
 <span class="sd">    :rtype: *iter*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">ensemble</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">experiments</span><span class="p">,</span> <span class="n">_get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">ensemble</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">experiments</span><span class="p">,</span> <span class="n">get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">)):</span>
         <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="n">_THREDDS_ROOT</span><span class="p">]</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="n">THREDDS_ROOT</span><span class="p">]</span>
             <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">institute</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
             <span class="n">url</span> <span class="o">+=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
             <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
             <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
-            <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_THREDDS_AGGREGATION_HTML_EXT</span><span class="p">)</span>
+            <span class="n">url</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">THREDDS_AGGREGATION_HTML_EXT</span><span class="p">)</span>
             <span class="k">yield</span> <span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_get_aggregation_xmls"><a class="viewcode-back" href="../autodoc.html#findagg._get_aggregation_xmls">[docs]</a><span class="k">def</span> <span class="nf">_get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_aggregation_xmls"><a class="viewcode-back" href="../autodoc.html#findagg.get_aggregation_xmls">[docs]</a><span class="k">def</span> <span class="nf">get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_get_aggregation_urls`, but returns an iterator on rebuild xml paths.</span>
+<span class="sd">    Like :func:`get_aggregation_urls`, but returns an iterator on rebuild xml paths.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 <span class="sd">    :returns: An iterator on rebuild xml paths</span>
 <span class="sd">    :rtype: *iter*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">ensemble</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">experiments</span><span class="p">,</span> <span class="n">_get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">ensemble</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">experiments</span><span class="p">,</span> <span class="n">get_ensembles_list</span><span class="p">(</span><span class="n">ctx</span><span class="p">)):</span>
         <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
-            <span class="n">xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_XML_ROOT</span><span class="p">,</span> <span class="n">experiment</span><span class="p">)</span>
+            <span class="n">xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">XML_ROOT</span><span class="p">,</span> <span class="n">experiment</span><span class="p">)</span>
             <span class="n">xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span>
-            <span class="n">xml</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">_PROJECT</span><span class="p">)]</span>
+            <span class="n">xml</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">PROJECT</span><span class="p">)]</span>
             <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
             <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
             <span class="n">xml</span> <span class="o">+=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
             <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
-            <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_XML_AGGREGATION_EXT</span><span class="p">)</span>
+            <span class="n">xml</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">XML_AGGREGATION_EXT</span><span class="p">)</span>
             <span class="k">yield</span> <span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_test_url"><a class="viewcode-back" href="../autodoc.html#findagg._test_url">[docs]</a><span class="k">def</span> <span class="nf">_test_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="viewcode-block" id="test_url"><a class="viewcode-back" href="../autodoc.html#findagg.test_url">[docs]</a><span class="k">def</span> <span class="nf">test_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Tests an url response.</span>
 
 <span class="sd">    :param str url: The url to test</span>
 <span class="sd">    :returns: True if the aggregation url exists</span>
 <span class="sd">    :rtype: *boolean*</span>
+<span class="sd">    :raises Error: If an HTTP request fails</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&#39;An URL test fails:&#39;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_test_xml"><a class="viewcode-back" href="../autodoc.html#findagg._test_xml">[docs]</a><span class="k">def</span> <span class="nf">_test_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+<div class="viewcode-block" id="test_xml"><a class="viewcode-back" href="../autodoc.html#findagg.test_xml">[docs]</a><span class="k">def</span> <span class="nf">test_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_test_url`, but tests if an xml path exists.</span>
+<span class="sd">    Like :func:`test_url`, but tests if an xml path exists.</span>
 
 <span class="sd">    :param str xml: The xml path to test</span>
 <span class="sd">    :returns: True if the xml aggregation exists</span>
@@ -424,61 +378,61 @@
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_all_urls_exist"><a class="viewcode-back" href="../autodoc.html#findagg._all_urls_exist">[docs]</a><span class="k">def</span> <span class="nf">_all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="all_urls_exist"><a class="viewcode-back" href="../autodoc.html#findagg.all_urls_exist">[docs]</a><span class="k">def</span> <span class="nf">all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a flag indicating whether all urls exist or not.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 <span class="sd">    :returns: True if all aggregation urls exist</span>
 <span class="sd">    :rtype: *boolean*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_test_url</span><span class="p">,</span> <span class="n">_get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">test_url</span><span class="p">,</span> <span class="n">get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
     <span class="k">return</span> <span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">urls</span> <span class="k">else</span> <span class="nb">all</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_all_xmls_exist"><a class="viewcode-back" href="../autodoc.html#findagg._all_xmls_exist">[docs]</a><span class="k">def</span> <span class="nf">_all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="all_xmls_exist"><a class="viewcode-back" href="../autodoc.html#findagg.all_xmls_exist">[docs]</a><span class="k">def</span> <span class="nf">all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_all_urls_exist`, but returns a flag indicating whether all xml paths exist or not.</span>
+<span class="sd">    Like :func:`all_urls_exist`, but returns a flag indicating whether all xml paths exist or not.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 <span class="sd">    :returns: True if all xml aggregation exist</span>
 <span class="sd">    :rtype: *boolean*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">xmls</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_test_xml</span><span class="p">,</span> <span class="n">_get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="n">xmls</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">test_xml</span><span class="p">,</span> <span class="n">get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
     <span class="k">return</span> <span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">xmls</span> <span class="k">else</span> <span class="nb">all</span><span class="p">(</span><span class="n">xmls</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="_write_urls"><a class="viewcode-back" href="../autodoc.html#findagg._write_urls">[docs]</a><span class="k">def</span> <span class="nf">_write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="write_urls"><a class="viewcode-back" href="../autodoc.html#findagg.write_urls">[docs]</a><span class="k">def</span> <span class="nf">write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes all available aggregations into output file.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;All THREDDS aggregations available for {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;All THREDDS aggregations available for {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">outputfile</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">outputfile</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">_get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;.html&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
 
 </div>
-<div class="viewcode-block" id="_write_xmls"><a class="viewcode-back" href="../autodoc.html#findagg._write_xmls">[docs]</a><span class="k">def</span> <span class="nf">_write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="write_xmls"><a class="viewcode-back" href="../autodoc.html#findagg.write_xmls">[docs]</a><span class="k">def</span> <span class="nf">write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_write_urls`, but writes available xml paths into the output file.</span>
+<span class="sd">    Like :func:`write_urls`, but writes available xml paths into the output file.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;All XML aggregations available for {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;All XML aggregations available for {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">outputfile</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">outputfile</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">xml</span> <span class="ow">in</span> <span class="n">_get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">xml</span> <span class="ow">in</span> <span class="n">get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_url2path"><a class="viewcode-back" href="../autodoc.html#findagg._url2path">[docs]</a><span class="k">def</span> <span class="nf">_url2path</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="viewcode-block" id="url2path"><a class="viewcode-back" href="../autodoc.html#findagg.url2path">[docs]</a><span class="k">def</span> <span class="nf">url2path</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts an aggregation url into a file path.</span>
 
@@ -487,24 +441,24 @@
 <span class="sd">    :rtype: *str*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">_CMIP5</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">CMIP5</span>
     <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">4</span><span class="p">:</span><span class="mi">11</span><span class="p">]:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_LATEST</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">LATEST</span><span class="p">)</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">11</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">path</span>
 
 </div>
-<div class="viewcode-block" id="_get_missing_tree"><a class="viewcode-back" href="../autodoc.html#findagg._get_missing_tree">[docs]</a><span class="k">def</span> <span class="nf">_get_missing_tree</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="viewcode-block" id="get_missing_tree"><a class="viewcode-back" href="../autodoc.html#findagg.get_missing_tree">[docs]</a><span class="k">def</span> <span class="nf">get_missing_tree</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the master missing tree where the data should be.</span>
 
-<span class="sd">    :param str url: The url to convert using :func:`_url2path`</span>
+<span class="sd">    :param str url: The url to convert using :func:`url2path`</span>
 <span class="sd">    :returns: The child tree where data should be on the filesystem</span>
 <span class="sd">    :rtype: *str*</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">_url2path</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">url2path</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">child</span> <span class="o">=</span> <span class="n">path</span>
@@ -512,49 +466,49 @@
         <span class="k">return</span> <span class="n">child</span>
 
 </div>
-<div class="viewcode-block" id="_get_missing_data"><a class="viewcode-back" href="../autodoc.html#findagg._get_missing_data">[docs]</a><span class="k">def</span> <span class="nf">_get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_missing_data"><a class="viewcode-back" href="../autodoc.html#findagg.get_missing_data">[docs]</a><span class="k">def</span> <span class="nf">get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes the sorted list of missing data.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_get_missing_tree</span><span class="p">,</span> <span class="n">_get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">get_missing_tree</span><span class="p">,</span> <span class="n">get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="n">_log</span><span class="p">(</span><span class="s">&#39;warning&#39;</span><span class="p">,</span> <span class="s">&#39;{0} does not exist on filesystem&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">_CMIP5</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">)))</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;{0} does not exist on filesystem&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">CMIP5</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">)))</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_get_missing_urls"><a class="viewcode-back" href="../autodoc.html#findagg._get_missing_urls">[docs]</a><span class="k">def</span> <span class="nf">_get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_missing_urls"><a class="viewcode-back" href="../autodoc.html#findagg.get_missing_urls">[docs]</a><span class="k">def</span> <span class="nf">get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_get_missing_data`, but writes the sorted list of missing aggregations urls.</span>
+<span class="sd">    Like :func:`get_missing_data`, but writes the sorted list of missing aggregations urls.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">_test_url</span><span class="p">,</span> <span class="n">_get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">test_url</span><span class="p">,</span> <span class="n">get_aggregation_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">urls</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="n">_log</span><span class="p">(</span><span class="s">&#39;warning&#39;</span><span class="p">,</span> <span class="s">&#39;{0} not available on THREDDS catalog&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">))[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;{0} not available on THREDDS catalog&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">))[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="_get_missing_xmls"><a class="viewcode-back" href="../autodoc.html#findagg._get_missing_xmls">[docs]</a><span class="k">def</span> <span class="nf">_get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+<div class="viewcode-block" id="get_missing_xmls"><a class="viewcode-back" href="../autodoc.html#findagg.get_missing_xmls">[docs]</a><span class="k">def</span> <span class="nf">get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Like :func:`_get_missing_urls`, but writes the sorted list of missing xml paths.</span>
+<span class="sd">    Like :func:`get_missing_urls`, but writes the sorted list of missing xml paths.</span>
 
-<span class="sd">    :param dict ctx: The processing context</span>
+<span class="sd">    :param dict ctx: The processing context (as a :func:`ProcessingContext` class instance)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">xmls</span> <span class="o">=</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">_test_xml</span><span class="p">,</span> <span class="n">_get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
+    <span class="n">xmls</span> <span class="o">=</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">test_xml</span><span class="p">,</span> <span class="n">get_aggregation_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">xml</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">xmls</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="n">_log</span><span class="p">(</span><span class="s">&#39;warning&#39;</span><span class="p">,</span> <span class="s">&#39;{0} not available in {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">_XML_ROOT</span><span class="p">))</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;{0} not available in {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">XML_ROOT</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">miss</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;{0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span>
@@ -562,48 +516,53 @@
 </div>
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../autodoc.html#findagg.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main entry point for stand-alone call.</span>
+<span class="sd">    Main process that\:</span>
+<span class="sd">     * Instanciates processing context,</span>
+<span class="sd">     * Tests all THREDDS aggregations URL,</span>
+<span class="sd">     * Tests all XML aggregations paths,</span>
+<span class="sd">     * Checks if data exist when aggregation is missing,</span>
+<span class="sd">     * Prints or logs the search results.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># Initialise processing context</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">_get_args</span><span class="p">()</span>
-    <span class="n">ctx</span> <span class="o">=</span> <span class="n">_ProcessingContext</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">_get_requirements</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">inputfile</span><span class="p">))</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+    <span class="n">ctx</span> <span class="o">=</span> <span class="n">ProcessingContext</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">get_requirements</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">inputfile</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">tds</span> <span class="ow">and</span> <span class="n">ctx</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
-        <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;==&gt; Starting search on {url.scheme}://{url.netloc}/ and in {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_XML_ROOT</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">_THREDDS_ROOT</span><span class="p">)))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;==&gt; Starting search on {url.scheme}://{url.netloc}/ and in {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">XML_ROOT</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">THREDDS_ROOT</span><span class="p">)))</span>
     <span class="k">elif</span> <span class="n">ctx</span><span class="o">.</span><span class="n">tds</span><span class="p">:</span>
-        <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;==&gt; Starting search on {url.scheme}://{url.netloc}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">_THREDDS_ROOT</span><span class="p">)))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;==&gt; Starting search on {url.scheme}://{url.netloc}/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urlparse</span><span class="p">(</span><span class="n">THREDDS_ROOT</span><span class="p">)))</span>
     <span class="k">elif</span> <span class="n">ctx</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
-        <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;==&gt; Starting search in {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_XML_ROOT</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;==&gt; Starting search in {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">XML_ROOT</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">ctx</span><span class="o">.</span><span class="n">institute</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">institutes</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">ctx</span><span class="o">.</span><span class="n">model</span> <span class="ow">in</span> <span class="n">ctx</span><span class="o">.</span><span class="n">institute</span><span class="o">.</span><span class="n">models</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">inter</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">_all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
-                    <span class="n">_write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-                    <span class="n">_write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="ow">and</span> <span class="n">all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+                    <span class="n">write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="n">write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">_get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-                    <span class="n">_get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-                    <span class="n">_get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="n">get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="n">get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="n">get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">check_data</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">tds</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">_all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
-                        <span class="n">_write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">all_urls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+                        <span class="n">write_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">_get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                        <span class="n">get_missing_urls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
                         <span class="n">check_data</span> <span class="o">=</span> <span class="bp">True</span>
                 <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">_all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
-                        <span class="n">_write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">all_xmls_exist</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+                        <span class="n">write_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">_get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                        <span class="n">get_missing_xmls</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
                         <span class="n">check_data</span> <span class="o">=</span> <span class="bp">True</span>
                 <span class="k">if</span> <span class="n">check_data</span><span class="p">:</span>
-                    <span class="n">_get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+                    <span class="n">get_missing_data</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
     <span class="c"># Close thread pool</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="n">_log</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,</span> <span class="s">&#39;==&gt; Search complete.&#39;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;==&gt; Search complete.&#39;</span><span class="p">)</span>
 
 
 <span class="c"># Main entry point for stand-alone call.</span></div>

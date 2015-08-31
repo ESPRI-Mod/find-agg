@@ -12,7 +12,7 @@ The only conguration you have to do is to build your request. ``find_agg`` works
 Build your request
 ++++++++++++++++++
 
-Edit your ``requirements.json`` file defining your requested experiments, ensembles and variables according to the `CMIP5 vocabulary <http://cmip-pcmdi.llnl.gov/cmip5/data_description.html>`_ and keeping the correct JSON syntax (see template below):
+Edit your ``requirements.json`` file defining your requested experiments, ensembles and variables according to the `CMIP5 vocabulary <http://cmip-pcmdi.llnl.gov/cmip5/data_description.html>`_ and keeping the correct `JSON syntax <http://www.w3schools.com/json/json_syntax.asp>`_ (see template below):
 
 .. code-block:: javascript
 
@@ -31,9 +31,9 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
    }
 
 
-``_help``: is an omitted section by ``find_agg``. You can use it as commentary describing your request.
+``_help`` is an omitted section by ``find_agg``. You can use it as commentary describing your request.
 
-``variables``: delare here the requiered variables with their CMIP5 name and corresponding tuple ``["frequency", "realm", "CMOR table"]`` in that order. Requesting several frequencies or CMOR tables for the same variable requires as much lines ! See following example:
+``variables`` delares the requiered variables with their `CMIP5 name <http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf>`_ and corresponding tuple ``["frequency", "realm", "CMOR table"]`` in that order. Requesting several frequencies or `CMOR tables <https://pcmdi.github.io/cmor-site/>`_ for the same variable requires as much lines. See following example:
 
 .. code-block:: javascript
 
@@ -43,10 +43,10 @@ Edit your ``requirements.json`` file defining your requested experiments, ensemb
       "tas": ["mon", "atmos", "Amon"]
       },
 
-``experiments``: list here the required experiments coma-separated.
-``ensembles``: list here the required ensembles coma-separated.
+``experiments`` lists the required experiments coma-separated.
+``ensembles`` lists the required ensembles coma-separated.
 
-.. warning:: ``find_agg`` supports Unix wildcards only for ensembles/members. As for example 
+.. warning:: ``find_agg`` supports Unix wildcards only for ensembles/members. As for example:
 
    .. code-block:: javascript
 

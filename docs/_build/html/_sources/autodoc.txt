@@ -1,3 +1,5 @@
+.. _configuration:
+
 ******************
 Code documentation
 ******************
