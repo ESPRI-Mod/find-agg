@@ -1,4 +1,4 @@
-.. _configuration:
+.. _autodoc:
 
 ******************
 Code documentation
