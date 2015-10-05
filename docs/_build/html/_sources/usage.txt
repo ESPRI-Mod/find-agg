@@ -1,17 +1,16 @@
 .. _usage:
 
-*****
 Usage
-*****
+=====
 
 Here is the command-line help:
 
 .. code-block:: bash
 
    $> find_agg -h
-   usage: findagg.py [-h] [--tds] [--xml] [-i] [-o [OUTPUTFILE]] [-m [MISSING]]
-                     [-l [LOGDIR]] [-v] [-V]
-                     [inputfile]
+   usage: findagg [-h] [--tds] [--xml] [-i] [-o [OUTPUTFILE]] [-m [MISSING]]
+                  [-l [LOGDIR]] [-v] [-V]
+                  [inputfile]
 
    Find CMIP5 aggregations according to requirements
    upon local IPSL-ESGF datanode (THREDDS server) or into CICLAD filesystem.
@@ -51,7 +50,7 @@ Here is the command-line help:
    Developed by Levavasseur, G., and Greenslade, M., (CNRS/IPSL)
 
 Tutorials
----------
+*********
 
 To find THREDDS aggregations:
 

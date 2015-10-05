@@ -1,8 +1,7 @@
 .. _synopsis:
 
-********
 Synopsis
-********
+========
 
 The `IPSL <https://www.ipsl.fr/>`_ uses an `ESG-F <http://pcmdi9.llnl.gov/>`_ datanode to publish and diffuse `CMIP5 <http://cmip-pcmdi.llnl.gov/cmip5/>`_ data located on `CICLAD <http://ciclad-web.ipsl.jussieu.fr/>`_ filesystem to its private reasearch community. This datanode could be query to find specific NetCDF files, through a `web front-end <http://esgf-local.ipsl.fr/esgf-web-fe/>`_.
 
@@ -10,11 +9,11 @@ Based on a `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`
 
 Moreover, the `IPSL <https://www.ipsl.fr/>`_ `CMIP5 <http://cmip-pcmdi.llnl.gov/cmip5/>`_ post-processing pipeline adds `CDAT <http://uvcdat.llnl.gov/>`_ aggregations  using ``cdscan`` command-line with XML format.
 
-``find_agg`` is a command-line tool allowing you to find and list the availale `CMIP5 <http://cmip-pcmdi.llnl.gov/cmip5/>`_ aggregations at `IPSL <https://www.ipsl.fr/>`_ in a fast and researcher-friendly way. This tool includes search over `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`_ and/or XML aggregations availables at `IPSL <https://www.ipsl.fr/>`_.
+``find_agg`` is a command-line tool allowing you to find and list the available `CMIP5 <http://cmip-pcmdi.llnl.gov/cmip5/>`_ aggregations at `IPSL <https://www.ipsl.fr/>`_ in a fast and researcher-friendly way. This tool includes search over `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`_ and/or XML aggregations availables at `IPSL <https://www.ipsl.fr/>`_.
 
 
 Features
-++++++++
+********
 
 **As the logical operator AND**
   The search-API from `ESG-F front-ends <http://esgf-node.ipsl.fr/esgf-web-fe/>`_ displays the results of your request using an *OR* logical operator. For example, this means you cannot select the temperature **AND** the precitation for the same model or institute. Here, ``find_agg`` follows **ALL** your requirements. All returned models satisfy your entire request.

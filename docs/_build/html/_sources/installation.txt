@@ -1,25 +1,24 @@
 .. _installation:
 
-************
 Installation
-************
+============
 
 Usual PIP installation 
-++++++++++++++++++++++
+**********************
 
 .. code-block:: bash
 
   pip install findagg
 
 PIP installation from GitHub
-++++++++++++++++++++++++++++
+****************************
 
 .. code-block:: bash
 
   pip install -e git://github.com/Prodiguer/cmip5-find-agg.git@master#egg=findagg
 
 Installation from GitHub
-++++++++++++++++++++++++
+************************
 
 1. Create a new directory:
 
@@ -47,7 +46,7 @@ Installation from GitHub
 .. warning:: To run ``find_agg`` you have to be logged on `CICLAD cluster <http://ciclad-web.ipsl.jussieu.fr/>`_.
 
 Dependencies
-++++++++++++
+************
 
 ``find_agg`` uses the following basic Python libraries includes in Python 2.5+. Becareful your Python environment includes:
 

@@ -1,8 +1,7 @@
 .. _usage:
 
-*****
 Usage
-*****
+=====
 
 Here is the command-line help:
 
@@ -51,7 +50,7 @@ Here is the command-line help:
    Developed by Levavasseur, G., and Greenslade, M., (CNRS/IPSL)
 
 Tutorials
----------
+*********
 
 To find THREDDS aggregations:
 

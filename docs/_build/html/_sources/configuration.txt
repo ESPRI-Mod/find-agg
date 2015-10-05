@@ -1,8 +1,7 @@
 .. _configuration:
 
-*************
 Configuration
-*************
+=============
 
 The only conguration you have to do is to build your request. ``find_agg`` works with a JSON header file enclosing your requirements. Please use the command-line help to find the embedded template (see :ref:`usage`).
 
@@ -10,7 +9,7 @@ The only conguration you have to do is to build your request. ``find_agg`` works
 
 
 Build your request
-++++++++++++++++++
+******************
 
 Edit your ``requirements.json`` file defining your requested experiments, ensembles and variables according to the `CMIP5 vocabulary <http://cmip-pcmdi.llnl.gov/cmip5/data_description.html>`_ and keeping the correct `JSON syntax <http://www.w3schools.com/json/json_syntax.asp>`_ (see template below):
 
