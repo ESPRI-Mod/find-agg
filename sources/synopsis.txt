@@ -22,10 +22,7 @@ Features
   ``find_agg`` builds all possible aggregations following your request and using a combinatorial algorithm. Then, all URLs are tested using multithreading.
 
 **Includes THREDDS and/or XML aggregations search**
-  You can choose to do your research on `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`_ aggregations, XML aggregations or both. At least one option ``--tds`` or ``--xml`` must be given (see :ref:`usage`).
-
-**Intersection between both sources**
-  The search on `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`_ and/or XML aggregation could give different results with two different lists of available models. You can change this default behaviour from union to intersection of results. Consequently, the returned list of models satisfies your request both for `THREDDS <http://www.unidata.ucar.edu/software/thredds/current/tds/>`_ and XML aggregations.
+  ``find_agg`` search for aggregations on OpenDAP endpoints on the esgf-local THREDDS server. ``find_agg`` also support search for "CDAT" aggregation (XML format).
 
 **Display missing data on the filesystem**
   When an aggregation test fails, you can choose to return the list of missing data on the filesystem `CMIP5 tree <http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf>`_. This information can be easily used to build a download request through a `SYNDA template <https://raw.githubusercontent.com/Prodiguer/synda/master/sdt/doc/TEMPLATE>`_.

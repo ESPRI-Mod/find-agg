@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; find_agg 0.5 documentation</title>
+  <title>Installation &mdash; find_agg 0.6.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="find_agg 0.5 documentation" href="index.html"/>
+    <link rel="top" title="find_agg 0.6.0 documentation" href="index.html"/>
         <link rel="next" title="Configuration" href="configuration.html"/>
         <link rel="prev" title="Synopsis" href="synopsis.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -193,22 +193,17 @@ git clone git@github.com:Prodiguer/cmip5-find-agg.git
 <li><a class="reference external" href="https://docs.python.org/2/library/argparse.html">argparse</a></li>
 <li><a class="reference external" href="https://docs.python.org/2/library/itertools.html">itertools</a></li>
 <li><a class="reference external" href="https://docs.python.org/2/library/json.html">json</a></li>
-<li><a class="reference external" href="https://docs.python.org/2/library/urlparse.html">urlparse</a></li>
 <li><a class="reference external" href="https://docs.python.org/2/library/datetime.html">datetime</a></li>
 <li><a class="reference external" href="https://docs.python.org/2/library/multiprocessing.html">multiprocessing</a></li>
 </ul>
 </div></blockquote>
-<p>Please install the <code class="docutils literal"><span class="pre">requests</span></code> library not inclued in most Python distributions using the usual PIP command-line:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install requests
-</pre></div>
-</div>
-<p>or download and intall the <a class="reference external" href="https://pypi.python.org/pypi/requests">sources from PyPi</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>wget https://pypi.python.org/packages/source/r/requests/requests-2.7.0.tar.gz#md5<span class="o">=</span>29b173fd5fa572ec0764d1fd7b527260
-tar -xzvf requests-2.7.0.tar.gz
-<span class="nb">cd</span> requests-2.7.0/
-python setup.py install
-</pre></div>
-</div>
+<p><code class="docutils literal"><span class="pre">find_agg</span></code> requires the following libraries not included in most Python distributions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/jsonschema">jsonschema</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/requests/2.11.1">requests</a></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -253,7 +248,7 @@ python setup.py install
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Synopsis &mdash; find_agg 0.5 documentation</title>
+  <title>Synopsis &mdash; find_agg 0.6.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="find_agg 0.5 documentation" href="index.html"/>
+    <link rel="top" title="find_agg 0.6.0 documentation" href="index.html"/>
         <link rel="next" title="Installation" href="installation.html"/>
         <link rel="prev" title="find_agg" href="index.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -151,9 +151,7 @@
 <dt><strong>Quick discovery</strong></dt>
 <dd><code class="docutils literal"><span class="pre">find_agg</span></code> builds all possible aggregations following your request and using a combinatorial algorithm. Then, all URLs are tested using multithreading.</dd>
 <dt><strong>Includes THREDDS and/or XML aggregations search</strong></dt>
-<dd>You can choose to do your research on <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> aggregations, XML aggregations or both. At least one option <code class="docutils literal"><span class="pre">--tds</span></code> or <code class="docutils literal"><span class="pre">--xml</span></code> must be given (see <a class="reference internal" href="usage.html#usage"><span class="std std-ref">Usage</span></a>).</dd>
-<dt><strong>Intersection between both sources</strong></dt>
-<dd>The search on <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> and/or XML aggregation could give different results with two different lists of available models. You can change this default behaviour from union to intersection of results. Consequently, the returned list of models satisfies your request both for <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> and XML aggregations.</dd>
+<dd><code class="docutils literal"><span class="pre">find_agg</span></code> search for aggregations on OpenDAP endpoints on the esgf-local THREDDS server. <code class="docutils literal"><span class="pre">find_agg</span></code> also support search for &#8220;CDAT&#8221; aggregation (XML format).</dd>
 <dt><strong>Display missing data on the filesystem</strong></dt>
 <dd>When an aggregation test fails, you can choose to return the list of missing data on the filesystem <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf">CMIP5 tree</a>. This information can be easily used to build a download request through a <a class="reference external" href="https://raw.githubusercontent.com/Prodiguer/synda/master/sdt/doc/TEMPLATE">SYNDA template</a>.</dd>
 <dt><strong>Save the results of your research</strong></dt>
@@ -207,7 +205,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
