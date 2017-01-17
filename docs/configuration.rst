@@ -32,11 +32,13 @@ or `CMOR tables <https://pcmdi.github.io/cmor-site/>`_ for the same variable req
 
 .. code-block:: json
 
-   "variables":
-      {
-      "tas": ["day", "atmos", "day"],
-      "tas": ["mon", "atmos", "Amon"]
-      },
+   {
+       "variables":
+          {
+          "tas": ["day", "atmos", "day"],
+          "tas": ["mon", "atmos", "Amon"]
+          }
+   }
 
 .. note::
 
@@ -45,17 +47,7 @@ or `CMOR tables <https://pcmdi.github.io/cmor-site/>`_ for the same variable req
 
 .. warning::
 
-   ``find_agg`` supports Unix wildcards only for ensembles/members:
-
-   .. code-block:: json
-
-      "ensembles": ["r[12]i1p1"]
-
-   or
-
-   .. code-block:: json
-
-      "ensembles": ["*"]
+   ``find_agg`` supports Unix wildcards only for ensembles/members: ``"ensembles": ["r[12]i1p1"]`` or ``"ensembles": ["*"]``.
 
 .. warning::
 
