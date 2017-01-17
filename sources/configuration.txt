@@ -36,7 +36,7 @@ or `CMOR tables <https://pcmdi.github.io/cmor-site/>`_ for the same variable req
       {
       "tas": ["day", "atmos", "day"],
       "tas": ["mon", "atmos", "Amon"]
-      },
+      }
 
 .. note::
 
@@ -47,15 +47,15 @@ or `CMOR tables <https://pcmdi.github.io/cmor-site/>`_ for the same variable req
 
    ``find_agg`` supports Unix wildcards only for ensembles/members:
 
-   .. code-block:: json
+.. code-block:: json
 
-      "ensembles": ["r[12]i1p1"]
+  "ensembles": ["r[12]i1p1"]
 
-   or
+or
 
-   .. code-block:: json
+.. code-block:: json
 
-      "ensembles": ["*"]
+  "ensembles": ["*"]
 
 .. warning::
 
