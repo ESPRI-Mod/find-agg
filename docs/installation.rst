@@ -54,23 +54,12 @@ Dependencies
  * `argparse <https://docs.python.org/2/library/argparse.html>`_
  * `itertools <https://docs.python.org/2/library/itertools.html>`_
  * `json <https://docs.python.org/2/library/json.html>`_
- * `urlparse <https://docs.python.org/2/library/urlparse.html>`_
  * `datetime <https://docs.python.org/2/library/datetime.html>`_
  * `multiprocessing <https://docs.python.org/2/library/multiprocessing.html>`_
 
-Please install the ``requests`` library not inclued in most Python distributions using the usual PIP command-line:
+``find_agg`` requires the following libraries not included in most Python distributions:
 
-.. code-block:: bash
-
-   pip install requests
-
-or download and intall the `sources from PyPi <https://pypi.python.org/pypi/requests>`_:
-
-.. code-block:: bash
-
-  wget https://pypi.python.org/packages/source/r/requests/requests-2.7.0.tar.gz#md5=29b173fd5fa572ec0764d1fd7b527260
-  tar -xzvf requests-2.7.0.tar.gz 
-  cd requests-2.7.0/
-  python setup.py install
+ * `jsonschema <https://pypi.python.org/pypi/jsonschema>`_
+ * `requests <https://pypi.python.org/pypi/requests/2.11.1>`_
 
 

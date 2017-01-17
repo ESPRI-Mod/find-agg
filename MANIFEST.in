@@ -1,2 +1,3 @@
 include findagg/requirements.json
+include findagg/template.json
 include README.rst

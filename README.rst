@@ -2,4 +2,4 @@
 find_agg
 ********
 
-`See documentation here <http://cmip5-find-agg.readthedocs.org/en/latest/>`_
+`See documentation here <http://prodiguer.github.io/find-agg/>`_
