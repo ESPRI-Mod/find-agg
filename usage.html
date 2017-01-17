@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usage &#8212; find_agg 0.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="find_agg 0.5 documentation" href="index.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently asked questions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">find_agg 0.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<span id="id1"></span><h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>Here is the command-line help:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg -h
+usage: findagg <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--tds<span class="o">]</span> <span class="o">[</span>--xml<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-o <span class="o">[</span>OUTPUTFILE<span class="o">]]</span> <span class="o">[</span>-m <span class="o">[</span>MISSING<span class="o">]]</span>
+               <span class="o">[</span>-l <span class="o">[</span>LOGDIR<span class="o">]]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-V<span class="o">]</span>
+               <span class="o">[</span>inputfile<span class="o">]</span>
+
+Find CMIP5 aggregations according to requirements
+upon <span class="nb">local</span> IPSL-ESGF datanode <span class="o">(</span>THREDDS server<span class="o">)</span> or into CICLAD filesystem.
+
+positional arguments:
+  inputfile             Path of the JSON template with the requirements of the request
+                        <span class="o">(</span>a template can be found in ~/anaconda/lib/python2.7/site-packages/findagg/requirements.json<span class="o">)</span>.
+
+
+optional arguments:
+  -h, --help            Show this <span class="nb">help</span> message and exit.
+
+  --tds                 Search THREDDS aggregations from ESG-F <span class="nb">local</span> node.
+
+  --xml                 Search XML aggregations from CDAT <span class="o">(</span>cdscan<span class="o">)</span>.
+
+  -i, --inter           Intersection between XML and THREDDS aggregations results
+                        <span class="o">(</span>required --xml and --tds, default is union of results<span class="o">)</span>.
+
+  -o <span class="o">[</span>OUTPUTFILE<span class="o">]</span>, --outputfile <span class="o">[</span>OUTPUTFILE<span class="o">]</span>
+                        Outputfile with available aggregations list
+                        <span class="o">(</span>default is <span class="s1">&#39;$(pwd)/aggregations.list&#39;</span><span class="o">)</span>.
+
+  -m <span class="o">[</span>MISSING<span class="o">]</span>, --missing <span class="o">[</span>MISSING<span class="o">]</span>
+                        Outputfile with the list of missing data
+                        <span class="o">(</span>default is <span class="s1">&#39;$(pwd)/missing_data.list&#39;</span><span class="o">)</span>.
+
+  -l <span class="o">[</span>LOGDIR<span class="o">]</span>, --logdir <span class="o">[</span>LOGDIR<span class="o">]</span>
+                        Logfile directory <span class="o">(</span>default is working directory<span class="o">)</span>.
+                        If not, standard output is used.
+
+  -v, --verbose         Shows missing data
+                        <span class="o">(</span>default only shows available models<span class="o">)</span>.
+
+  -V, --version         Program version
+
+Developed by Levavasseur, G., and Greenslade, M., <span class="o">(</span>CNRS/IPSL<span class="o">)</span>
+</pre></div>
+</div>
+<div class="section" id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
+<p>To find THREDDS aggregations:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --tds
+<span class="o">==</span>&gt; Starting search on http://esgf-local.ipsl.fr/
+All THREDDS aggregations available <span class="k">for</span> bcc-csm1-1-m
+All THREDDS aggregations available <span class="k">for</span> CanESM2
+All THREDDS aggregations available <span class="k">for</span> CNRM-CM5
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+<p>To find XML aggregations:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --xml
+<span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available <span class="k">for</span> bcc-csm1-1
+All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+All XML aggregations available <span class="k">for</span> CanESM2
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+<p>To find both XML and THREDDS aggregations:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --tds --xml
+<span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available <span class="k">for</span> bcc-csm1-1
+All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+All THREDDS aggregations available <span class="k">for</span> bcc-csm1-1-m
+All XML aggregations available <span class="k">for</span> CanESM2
+All THREDDS aggregations available <span class="k">for</span> CanESM2
+All THREDDS aggregations available <span class="k">for</span> CNRM-CM5
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+<p>To find the intersection of available aggregations (XML <em>AND</em> THREDDS):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --tds --xml -i
+<span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+All THREDDS aggregations available <span class="k">for</span> bcc-csm1-1-m
+All XML aggregations available <span class="k">for</span> CanESM2
+All THREDDS aggregations available <span class="k">for</span> CanESM2
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+<p>To save your research in output files (<code class="docutils literal"><span class="pre">-o</span></code> for aggregation list and <code class="docutils literal"><span class="pre">-m</span></code> for missing data list, both are optionnal):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --xml -o /path/to/aggregation.list -m /path/to/missing_data.list
+<span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available <span class="k">for</span> bcc-csm1-1
+All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+All XML aggregations available <span class="k">for</span> CanESM2
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+
+$&gt; cat /path/to/aggregation.list
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/pr/cmip5.bcc-csm1-1.piControl.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/tas/cmip5.bcc-csm1-1.piControl.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/1pctCO2/atmos/mon/pr/cmip5.bcc-csm1-1.1pctCO2.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/1pctCO2/atmos/mon/tas/cmip5.bcc-csm1-1.1pctCO2.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp26/atmos/mon/pr/cmip5.bcc-csm1-1.rcp26.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp26/atmos/mon/tas/cmip5.bcc-csm1-1.rcp26.r1i1p1.mon.atmos.Amon.tas.latest.xml
+<span class="o">[</span>...<span class="o">]</span>
+
+$&gt; cat /path/to/missing_data.list
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/tas/cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/1pctCO2/atmos/mon/pr/cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/piControl/atmos/mon/pr/cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/1pctCO2/atmos/mon/tas/cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp85/atmos/mon/pr/cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp26/atmos/mon/tas/cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp85/atmos/mon/tas/cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.tas.latest.xml
+/prodigfs/esg/xml/CMIP5/rcp26/atmos/mon/pr/cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.pr.latest.xml
+/prodigfs/esg/CMIP5/merge/CCCma/CanCM4/rcp26
+/prodigfs/esg/CMIP5/merge/CCCma/CanCM4/piControl
+/prodigfs/esg/CMIP5/merge/CCCma/CanCM4/rcp85
+/prodigfs/esg/CMIP5/merge/CCCma/CanCM4/1pctCO2
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+<p>Use verbose mode to print missing data:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --xml -v
+<span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+All XML aggregations available <span class="k">for</span> bcc-csm1-1
+All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+All XML aggregations available <span class="k">for</span> CanESM2
+cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.piControl.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.1pctCO2.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp85.r1i1p1.mon.atmos.Amon.tas.latest.xml not available in /prodigfs/esg/xml/CMIP5
+cmip5.CanCM4.rcp26.r1i1p1.mon.atmos.Amon.pr.latest.xml not available in /prodigfs/esg/xml/CMIP5
+./CCCma/CanCM4/rcp26 does not exist on filesystem
+./CCCma/CanCM4/piControl does not exist on filesystem
+./CCCma/CanCM4/rcp85 does not exist on filesystem
+./CCCma/CanCM4/1pctCO2 does not exist on filesystem
+<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+<p>To use a logfile (the logfile directory is optionnal):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; find_agg /path/to/your/requirements.json --xml -l /path/to/logfile
+
+$&gt; cat /path/to/logfile/findagg-YYYYMMDD-HHMMSS-PID.log
+cat find_agg-20150707-143316-29540.log
+YYYY/MM/DD HH:MM:SS PM <span class="nv">INFO</span> <span class="o">==</span>&gt; Starting search in /prodigfs/esg/xml/CMIP5
+YYYY/MM/DD HH:MM:SS PM INFO All XML aggregations available <span class="k">for</span> bcc-csm1-1
+YYYY/MM/DD HH:MM:SS PM INFO All XML aggregations available <span class="k">for</span> bcc-csm1-1-m
+YYYY/MM/DD HH:MM:SS PM INFO All XML aggregations available <span class="k">for</span> CanESM2
+<span class="o">[</span>...<span class="o">]</span>
+YYYY/MM/DD HH:MM:SS PM <span class="nv">INFO</span> <span class="o">==</span>&gt; Search complete.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configuration.html"
+                        title="previous chapter">Configuration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="faq.html"
+                        title="next chapter">Frequently asked questions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently asked questions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">find_agg 0.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Levavasseur, G..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>

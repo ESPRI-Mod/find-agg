@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Synopsis &#8212; find_agg 0.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="find_agg 0.5 documentation" href="index.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="find_agg" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="find_agg"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">find_agg 0.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="synopsis">
+<span id="id1"></span><h1>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.ipsl.fr/">IPSL</a> uses an <a class="reference external" href="http://pcmdi9.llnl.gov/">ESG-F</a> datanode to publish and diffuse <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/">CMIP5</a> data located on <a class="reference external" href="http://ciclad-web.ipsl.jussieu.fr/">CICLAD</a> filesystem to its private reasearch community. This datanode could be query to find specific NetCDF files, through a <a class="reference external" href="http://esgf-local.ipsl.fr/esgf-web-fe/">web front-end</a>.</p>
+<p>Based on a <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> server, the <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/">CMIP5</a> files are fictitiously concacenated along time dimension throught <a class="reference external" href="http://www.opendap.org/">OpenDAP</a> URL. These aggregations avoid to deal with the files splitting depending on model and frequency over a time period.</p>
+<p>Moreover, the <a class="reference external" href="https://www.ipsl.fr/">IPSL</a> <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/">CMIP5</a> post-processing pipeline adds <a class="reference external" href="http://uvcdat.llnl.gov/">CDAT</a> aggregations  using <code class="docutils literal"><span class="pre">cdscan</span></code> command-line with XML format.</p>
+<p><code class="docutils literal"><span class="pre">find_agg</span></code> is a command-line tool allowing you to find and list the available <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/">CMIP5</a> aggregations at <a class="reference external" href="https://www.ipsl.fr/">IPSL</a> in a fast and researcher-friendly way. This tool includes search over <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> and/or XML aggregations availables at <a class="reference external" href="https://www.ipsl.fr/">IPSL</a>.</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>As the logical operator AND</strong></dt>
+<dd>The search-API from <a class="reference external" href="http://esgf-node.ipsl.fr/esgf-web-fe/">ESG-F front-ends</a> displays the results of your request using an <em>OR</em> logical operator. For example, this means you cannot select the temperature <strong>AND</strong> the precitation for the same model or institute. Here, <code class="docutils literal"><span class="pre">find_agg</span></code> follows <strong>ALL</strong> your requirements. All returned models satisfy your entire request.</dd>
+<dt><strong>Quick discovery</strong></dt>
+<dd><code class="docutils literal"><span class="pre">find_agg</span></code> builds all possible aggregations following your request and using a combinatorial algorithm. Then, all URLs are tested using multithreading.</dd>
+<dt><strong>Includes THREDDS and/or XML aggregations search</strong></dt>
+<dd>You can choose to do your research on <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> aggregations, XML aggregations or both. At least one option <code class="docutils literal"><span class="pre">--tds</span></code> or <code class="docutils literal"><span class="pre">--xml</span></code> must be given (see <a class="reference internal" href="usage.html#usage"><span class="std std-ref">Usage</span></a>).</dd>
+<dt><strong>Intersection between both sources</strong></dt>
+<dd>The search on <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> and/or XML aggregation could give different results with two different lists of available models. You can change this default behaviour from union to intersection of results. Consequently, the returned list of models satisfies your request both for <a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a> and XML aggregations.</dd>
+<dt><strong>Display missing data on the filesystem</strong></dt>
+<dd>When an aggregation test fails, you can choose to return the list of missing data on the filesystem <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf">CMIP5 tree</a>. This information can be easily used to build a download request through a <a class="reference external" href="https://raw.githubusercontent.com/Prodiguer/synda/master/sdt/doc/TEMPLATE">SYNDA template</a>.</dd>
+<dt><strong>Save the results of your research</strong></dt>
+<dd>To proceed on found aggregations, you can save the list of available aggregation. It is possible to specify the path of the output files or not. <code class="docutils literal"><span class="pre">-o/--outputfile</span></code> option stands for the aggregation list and <code class="docutils literal"><span class="pre">-m/--missing</span></code> option is for the list of missing data on the filesystem (see <a class="reference internal" href="usage.html#usage"><span class="std std-ref">Usage</span></a>). Both options are optionnal and can be used independently of one another.</dd>
+<dt><strong>Useful template</strong></dt>
+<dd>Your request can be easily formatted using the <code class="docutils literal"><span class="pre">requierments.json</span></code> template. You just need to know the <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/data_description.html">CMIP5 vocabulary</a> to build your request in a researcher-friendly way (see <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Configuration</span></a>).</dd>
+<dt><strong>Use a logfile</strong></dt>
+<dd>You can initiate a logger instead of the standard output. This could be useful for automatic workflows. The logfile name is automatically defined and unique (using the the job&#8217;s name, the date and the job&#8217;s PID). You can define an output directory for your logs too.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Synopsis</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">find_agg</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/synopsis.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="find_agg"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">find_agg 0.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Levavasseur, G..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+  </body>
+</html>
