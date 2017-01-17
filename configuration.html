@@ -159,11 +159,13 @@
 <p><code class="docutils literal"><span class="pre">variables</span></code> declares the required variables with their <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf">CMIP5 name</a> and
 corresponding tuple <code class="docutils literal"><span class="pre">[&quot;frequency&quot;,</span> <span class="pre">&quot;realm&quot;,</span> <span class="pre">&quot;CMOR</span> <span class="pre">table&quot;]</span></code> in that order. Requesting several frequencies
 or <a class="reference external" href="https://pcmdi.github.io/cmor-site/">CMOR tables</a> for the same variable requires as much lines. See following example:</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>&quot;variables&quot;:
-   {
-   &quot;tas&quot;: [&quot;day&quot;, &quot;atmos&quot;, &quot;day&quot;],
-   &quot;tas&quot;: [&quot;mon&quot;, &quot;atmos&quot;, &quot;Amon&quot;]
-   }
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;variables&quot;</span><span class="p">:</span>
+       <span class="p">{</span>
+       <span class="nt">&quot;tas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">],</span>
+       <span class="nt">&quot;tas&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mon&quot;</span><span class="p">,</span> <span class="s2">&quot;atmos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amon&quot;</span><span class="p">]</span>
+       <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -175,11 +177,15 @@ or <a class="reference external" href="https://pcmdi.github.io/cmor-site/">CMOR 
 <p class="first admonition-title">Warning</p>
 <p class="last"><code class="docutils literal"><span class="pre">find_agg</span></code> supports Unix wildcards only for ensembles/members:</p>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>&quot;ensembles&quot;: [&quot;r[12]i1p1&quot;]
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;ensembles&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r[12]i1p1&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span>&quot;ensembles&quot;: [&quot;*&quot;]
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;ensembles&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition warning">
