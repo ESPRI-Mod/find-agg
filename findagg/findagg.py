@@ -409,12 +409,12 @@ def all_urls_exist(ctx):
 
     """
     urls = ctx.pool.map(test_url, get_aggregation_urls(ctx))
-    if all(urls):
-        return COMPLETE
-    elif any(urls):
-        return INCOMPLETE
-    else:
+    if not any(urls):
         return NONE
+    elif all(urls):
+        return COMPLETE
+    else:
+        return INCOMPLETE
 
 
 def all_xmls_exist(ctx):
@@ -427,12 +427,12 @@ def all_xmls_exist(ctx):
 
     """
     xmls = ctx.pool.map(test_xml, get_aggregation_xmls(ctx))
-    if all(xmls):
-        return COMPLETE
-    elif any(xmls):
-        return INCOMPLETE
-    else:
+    if not any(xmls):
         return NONE
+    elif all(xmls):
+        return COMPLETE
+    else:
+        return INCOMPLETE
 
 
 def write_urls(ctx):
@@ -532,8 +532,6 @@ def get_missing_xmls(ctx):
     """
     xmls = ifilterfalse(test_xml, get_aggregation_xmls(ctx))
     for xml in set(sorted(xmls)):
-        if ctx.verbose:
-            logging.warning('{0} not available on CICLAD'.format(os.path.basename(xml)))
         if ctx.miss_file:
             with open(ctx.miss_file, 'a+') as f:
                 f.write('{0}\n'.format(xml))
@@ -560,7 +558,7 @@ def main():
         for ctx.model in ctx.institute.models:
             xmls_status = all_xmls_exist(ctx)
             urls_status = all_urls_exist(ctx)
-            logging.info('| {0}| {1}| {1}|'.format(ctx.model.ljust(19), urls_status.ljust(14), xmls_status.ljust(14)))
+            logging.info('| {0}| {1}| {2}|'.format(ctx.model.ljust(19), urls_status.ljust(14), xmls_status.ljust(14)))
             if urls_status is COMPLETE:
                 write_urls(ctx)
             else:
