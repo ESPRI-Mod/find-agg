@@ -1,5 +1,5 @@
-find_agg
-========
+Find aggregations at IPSL
+=========================
 
 .. toctree::
    :maxdepth: 1

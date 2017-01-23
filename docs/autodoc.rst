@@ -1,11 +1,10 @@
 .. _autodoc:
 
-******************
 Code documentation
-******************
+==================
 
 findagg.py
-==========
+**********
 
 .. automodule:: findagg
 

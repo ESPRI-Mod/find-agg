@@ -5,7 +5,9 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = _build
+BUILDDIR      = ../../docs-build
+PDFBUILDDIR   = /tmp
+PDF           = ../manual.pdf
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -45,6 +47,7 @@ help:
 	@echo "  pseudoxml  to make pseudoxml-XML files for display purposes"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  gh-pages   to make standalone HTML files and commit them on gh-pages"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -175,3 +178,14 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
+
+gh-pages:
+	cd $(BUILDDIR)/html;\
+    git pull origin gh-pages;\
+    cd -;\
+    $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html;\
+    cd $(BUILDDIR)/html;\
+	git add .;\
+	git commit -m "Docs rebuilt at $(date +'%Y/%m/%d - %H:%M:%S')";\
+	git push origin gh-pages
+	@echo "Build finished and committed on gh-pages."
