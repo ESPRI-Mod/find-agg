@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Synopsis &mdash; find_agg 0.6.0 documentation</title>
+  <title>Synopsis &mdash; find_agg 0.6.1 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="find_agg 0.6.0 documentation" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="find_agg 0.6.1 documentation" href="index.html"/>
         <link rel="next" title="Installation" href="installation.html"/>
         <link rel="prev" title="Find aggregations at IPSL" href="index.html"/> 
 
@@ -41,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -81,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Synopsis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 </ul>
@@ -105,8 +114,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">find_agg</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">find_agg</a>
+        
       </nav>
 
 
@@ -115,23 +126,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Synopsis</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Synopsis</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="sources/synopsis.txt" rel="nofollow"> View page source</a>
+            
+            <a href="sources/synopsis.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -151,7 +179,7 @@
 <dt><strong>Quick discovery</strong></dt>
 <dd><code class="docutils literal"><span class="pre">find_agg</span></code> builds all possible aggregations following your request and using a combinatorial algorithm. Then, all URLs are tested using multithreading.</dd>
 <dt><strong>Includes THREDDS and/or XML aggregations search</strong></dt>
-<dd><code class="docutils literal"><span class="pre">find_agg</span></code> search for aggregations on OpenDAP endpoints on the esgf-local THREDDS server. <code class="docutils literal"><span class="pre">find_agg</span></code> also support search for &#8220;CDAT&#8221; aggregation (XML format).</dd>
+<dd><code class="docutils literal"><span class="pre">find_agg</span></code> search for aggregations on OpenDAP endpoints on the esgf-local THREDDS server. <code class="docutils literal"><span class="pre">find_agg</span></code> also support search for “CDAT” aggregation (XML format).</dd>
 <dt><strong>Display missing data on the filesystem</strong></dt>
 <dd>When an aggregation test fails, you can choose to return the list of missing data on the filesystem <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf">CMIP5 tree</a>. This information can be easily used to build a download request through a <a class="reference external" href="https://raw.githubusercontent.com/Prodiguer/synda/master/sdt/doc/TEMPLATE">SYNDA template</a>.</dd>
 <dt><strong>Save the results of your research</strong></dt>
@@ -159,22 +187,25 @@
 <dt><strong>Useful template</strong></dt>
 <dd>Your request can be easily formatted using the <code class="docutils literal"><span class="pre">requierments.json</span></code> template. You just need to know the <a class="reference external" href="http://cmip-pcmdi.llnl.gov/cmip5/data_description.html">CMIP5 vocabulary</a> to build your request in a researcher-friendly way (see <a class="reference internal" href="configuration.html#configuration"><span class="std std-ref">Configuration</span></a>).</dd>
 <dt><strong>Use a logfile</strong></dt>
-<dd>You can initiate a logger instead of the standard output. This could be useful for automatic workflows. The logfile name is automatically defined and unique (using the the job&#8217;s name, the date and the job&#8217;s PID). You can define an output directory for your logs too.</dd>
+<dd>You can initiate a logger instead of the standard output. This could be useful for automatic workflows. The logfile name is automatically defined and unique (using the the job’s name, the date and the job’s PID). You can define an output directory for your logs too.</dd>
 </dl>
 </div>
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Find aggregations at IPSL" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Find aggregations at IPSL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -205,10 +236,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.6.0',
+            VERSION:'0.6.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="static/jquery.js"></script>
