@@ -21,10 +21,10 @@ import requests
 from jsonschema import validate
 
 # Program version
-__version__ = 'v{0} {1}'.format('0.6.0', datetime(year=2017, month=1, day=17).strftime("%Y-%d-%m"))
+__version__ = 'v{0} {1}'.format('0.6.2', datetime(year=2018, month=4, day=11).strftime("%Y-%d-%m"))
 
 # THREDDS server root url
-THREDDS_ROOT = 'http://esgf-local.ipsl.upmc.fr/thredds/dodsC/cmip5.output'
+THREDDS_ROOT = 'https://vesg.ipsl.upmc.fr/thredds/dodsC/cmip5-pp.output'
 
 # THREDDS aggregation html file extension
 THREDDS_AGGREGATION_HTML_EXT = '1.aggregation.1.html'
@@ -36,7 +36,7 @@ XML_AGGREGATION_EXT = '.xml'
 CMIP5 = '/prodigfs/project/CMIP5/output'
 
 # Project
-PROJECT = 'cmip5'
+PROJECT = 'cmip5-pp'
 
 # Filesystem CMIP5 xml root folder
 XML_ROOT = '/prodigfs/project/CMIP5/output'

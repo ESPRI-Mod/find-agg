@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(name='findagg',
-      version='0.6.0',
+      version='0.6.2',
       description='CMIP5 aggregation discovery upon local TDS IPSL-ESGF datanode or CICLAD filesystem.',
       author='Levavasseur Guillaume',
       author_email='glipsl@ipsl.jussieu.fr',
-      url='https://github.com/Prodiguer/cmip5-find-agg',
+      url='http://prodiguer.github.io/find-agg/',
       packages=find_packages(),
       include_package_data=True,
       plateforms=['Unix'],
