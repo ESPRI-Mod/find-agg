@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='findagg',
-      version='0.6.1',
+      version='0.6.2',
       description='CMIP5 aggregation discovery upon local TDS IPSL-ESGF datanode or CICLAD filesystem.',
       author='Levavasseur Guillaume',
       author_email='glipsl@ipsl.jussieu.fr',
